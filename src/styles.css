@@ -2,3 +2,289 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* =========================
+   Global tokens (safe)
+========================= */
+/* styles.css */
+:root {
+  --bg-main: #ffffff;
+  --bg-accent: #f1f5f9;
+  --accent: #2563eb;
+  --accent-soft: #e0e7ff;
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --border: #e2e8f0;
+}
+
+*{ box-sizing: border-box; }
+html, body{ height: 100%; }
+body{
+  margin: 0;
+  color: var(--text);
+  background:
+    radial-gradient(900px 600px at 15% 10%, rgba(124,58,237,.28), transparent 60%),
+    radial-gradient(900px 600px at 90% 0%, rgba(34,197,94,.18), transparent 55%),
+    radial-gradient(1200px 900px at 50% 120%, rgba(59,130,246,.12), transparent 60%),
+    var(--bg);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  line-height: 1.5;
+}
+
+/* =========================
+   Accessibility: skip link
+========================= */
+.skip-link{
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(255,255,255,.12);
+  color: var(--text);
+  border: 1px solid var(--border);
+  transform: translateY(-140%);
+  transition: transform .18s ease;
+  z-index: 9999;
+  text-decoration: none;
+}
+.skip-link:focus{
+  transform: translateY(0);
+  outline: 3px solid rgba(34,197,94,.35);
+  outline-offset: 2px;
+}
+
+/* =========================
+   Header
+========================= */
+.site-header{
+  padding: 44px 16px 24px;
+}
+.header-inner{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 22px 22px;
+  border-radius: calc(var(--radius) + 6px);
+  background: linear-gradient(135deg, rgba(255,255,255,.09), rgba(255,255,255,.04));
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+}
+.title{
+  margin: 0 0 8px;
+  font-size: clamp(22px, 3vw, 34px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+.subtitle{
+  margin: 0;
+  color: var(--text-weak);
+  max-width: 68ch;
+}
+
+/* =========================
+   Page layout
+========================= */
+.page{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 18px 16px 40px;
+}
+
+.section{
+  margin-top: 18px;
+}
+.section-title{
+  margin: 0 0 12px;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+/* =========================
+   Cards (Material wrapper)
+========================= */
+.card.mat-mdc-card{
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+}
+.card .mat-mdc-card-content{
+  padding: 18px;
+}
+
+/* =========================
+   Stepper
+========================= */
+.stepper.mat-stepper-horizontal,
+.stepper.mat-stepper-vertical{
+  background: transparent;
+}
+
+/* Make step headers readable on dark */
+.stepper .mat-step-header{
+  border-radius: 14px;
+}
+.stepper .mat-step-header:hover{
+  background: rgba(255,255,255,.06);
+}
+.stepper .mat-step-label{
+  color: var(--text);
+}
+.stepper .mat-step-text-label{
+  color: var(--text);
+}
+.stepper .mat-step-icon{
+  background: rgba(255,255,255,.14);
+  color: var(--text);
+}
+.stepper .mat-step-icon-selected{
+  background: rgba(34,197,94,.22);
+}
+
+/* =========================
+   Form fields spacing
+========================= */
+.hint{
+  margin: 0 0 14px;
+  color: var(--text-weak);
+}
+
+.field{
+  width: 100%;
+  display: block;
+  margin: 12px 0;
+}
+
+.checks{
+  display: grid;
+  gap: 10px;
+  padding: 10px 0 2px;
+}
+
+/* =========================
+   Actions row
+========================= */
+.actions{
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+/* =========================
+   Result box
+========================= */
+.result{
+  margin-top: 10px;
+  padding: 14px 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+}
+
+.result-title{
+  margin: 0 0 10px;
+  font-size: 16px;
+}
+.steps{
+  margin: 0;
+  padding-left: 18px;
+}
+.steps li{
+  margin: 10px 0;
+}
+.step-text{
+  margin-top: 4px;
+  color: var(--text-weak);
+}
+
+/* Note */
+.note{
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(124,58,237,.22);
+  background: rgba(124,58,237,.12);
+  color: var(--text);
+}
+
+/* Callouts grid */
+.callouts{
+  display: grid;
+  gap: 12px;
+  margin-top: 12px;
+}
+.callout.mat-mdc-card{
+  border-radius: 16px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid var(--border);
+  box-shadow: none;
+}
+.callout .mat-mdc-card-title{
+  font-size: 14px;
+  font-weight: 700;
+  padding: 14px 14px 0;
+}
+.callout .mat-mdc-card-content{
+  padding: 10px 14px 14px;
+  color: var(--text-weak);
+}
+.callout ul{
+  margin: 8px 0 0;
+  padding-left: 18px;
+}
+
+/* =========================
+   Error text
+========================= */
+.error{
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(239,68,68,.35);
+  background: rgba(239,68,68,.14);
+  color: rgba(255,255,255,.92);
+}
+
+/* =========================
+   FAQ details
+========================= */
+details{
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  background: rgba(255,255,255,.04);
+}
+details + details{ margin-top: 10px; }
+summary{
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--text);
+}
+details p{
+  margin: 8px 0 0;
+  color: var(--text-weak);
+}
+
+/* =========================
+   Footer
+========================= */
+.site-footer{
+  padding: 28px 16px 40px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* =========================
+   Responsive
+========================= */
+@media (max-width: 640px){
+  .header-inner{ padding: 18px; }
+  .card .mat-mdc-card-content{ padding: 14px; }
+  .actions{ justify-content: stretch; }
+  .actions > button{ flex: 1 1 auto; }
+}

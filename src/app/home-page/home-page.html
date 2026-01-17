@@ -1,1 +1,36 @@
-<p>home-page works!</p>
+<main class="page" role="main" aria-label="Home">
+
+  <section class="hero" aria-label="Intro">
+    <h2 class="hero-title">Start your first steps in Canada</h2>
+    <p class="hero-subtitle">
+      Choose a topic below to get a clear, step-by-step guide.
+    </p>
+  </section>
+
+  <section class="cards" aria-label="Topics">
+    <mat-card class="topic-card" *ngFor="let p of processData.processes">
+      <mat-card-header>
+        <mat-card-title>{{ p.title }}</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p class="desc">{{ p.shortDescription }}</p>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <!-- For now this is a mock route style.
+             Later you can route to /sin, /g1, /taxes based on p.id -->
+        <button
+          mat-raised-button
+          class="btn-primary"
+          [routerLink]="['/', p.id]"
+          aria-label="Open {{ p.title }} steps"
+        >
+          More Info
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </section>
+
+</main>
+

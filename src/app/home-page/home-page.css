@@ -1,0 +1,72 @@
+:host {
+  display: block;
+
+  --bg: #ffffff;
+  --section: #f1f1f1;
+  --text: #000000;
+  --secondary: #26374a;
+  --canada-red: #c00000;
+  --focus-blue: #2b4380;
+}
+
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 22px 20px;
+  color: var(--text);
+}
+
+.hero {
+  background: var(--section);
+  border-left: 6px solid var(--canada-red);
+  padding: 18px 16px;
+  border-radius: 10px;
+}
+
+.hero-title {
+  margin: 0 0 6px 0;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.hero-subtitle {
+  margin: 0;
+  color: var(--secondary);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.cards {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.topic-card {
+  border-top: 4px solid var(--canada-red);
+}
+
+.desc {
+  margin: 10px 0 0 0;
+  color: var(--secondary);
+  line-height: 1.35;
+}
+
+/* Optional: make primary button look more "Canada red" */
+.btn-primary {
+  background: var(--canada-red) !important;
+  color: #ffffff !important;
+}
+
+button:focus-visible {
+  outline: 3px solid var(--focus-blue);
+  outline-offset: 3px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}

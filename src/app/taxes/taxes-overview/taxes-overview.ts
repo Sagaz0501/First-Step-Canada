@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -15,9 +15,10 @@ import { ProcessDataService, ProcessInfo } from '../../services/process-data.ser
   styleUrl: './taxes-overview.css',
 })
 export class TaxesOverview {
+  private processData = inject(ProcessDataService);
   process: ProcessInfo;
 
-  constructor(private processData: ProcessDataService) {
+  constructor() {
     // Pull the Taxes content from the shared service
     this.process = this.processData.getProcessById('taxes')!;
   }

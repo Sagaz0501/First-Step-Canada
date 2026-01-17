@@ -1,0 +1,19 @@
+/* Make the whole app use a "sticky footer" layout */
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* full screen height */
+}
+
+/* This is the <main> wrapper in app.html */
+main {
+  flex: 1;           /* takes all remaining space */
+  display: block;
+}
+
+/* Optional: avoid weird margins/padding */
+main,
+router-outlet {
+  margin: 0;
+  padding: 0;
+}

@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en-CA">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FirstStep_CA · SIN</title>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="wrap">
+        <div class="branding">
+          <strong>FirstStep_CA</strong>
+          <span>Clear steps for Canadian processes</span>
+        </div>
+
+        <nav class="primary-nav" aria-label="Primary navigation">
+          <a href="/home">Home</a>
+          <a href="/sin" aria-current="page">SIN</a>
+          <a href="/g1">G1</a>
+          <a href="/taxes">Taxes</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" aria-label="Page introduction">
+      <div class="wrap">
+        <h1>Social Insurance Number (SIN)</h1>
+        <p>
+          A step-by-step guide to help you understand what you need and what to do next.
+        </p>
+        <div class="hero-actions">
+          <a href="#wizard" class="btn btn-primary">Start step-by-step</a>
+          <a href="#overview" class="btn btn-secondary">Read overview</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main id="main">
+      <div class="wrap layout">
+        <!-- MAIN COLUMN -->
+        <div>
+          <!-- OVERVIEW -->
+          <section id="overview" class="card">
+            <h2>What is a SIN?</h2>
+            <p>
+              A Social Insurance Number (SIN) is a 9-digit number you may need to work in Canada,
+              pay taxes, or access government programs.
+            </p>
+
+            <h3>When do you need it?</h3>
+            <ul>
+              <li>Starting a job</li>
+              <li>Filing taxes</li>
+              <li>Accessing eligible government benefits</li>
+            </ul>
+
+            <h3>Important</h3>
+            <ul>
+              <li>Your SIN is free</li>
+              <li>Only share it when legally required</li>
+              <li>This guide helps you prepare — it is not an official government service</li>
+            </ul>
+          </section>
+
+          <!-- WIZARD -->
+          <section id="wizard" class="card" aria-label="SIN step-by-step wizard">
+            <h2>Step-by-step wizard</h2>
+
+            <!-- Progress indicator -->
+            <ol class="wizard-progress" aria-label="Wizard progress">
+              <li aria-current="step">Start</li>
+              <li>Eligibility</li>
+              <li>Documents</li>
+              <li>Apply</li>
+              <li>After</li>
+              <li>Review</li>
+            </ol>
+
+            <!-- STEP 1 -->
+            <section class="wizard-step" aria-label="Step 1: Start">
+              <h3>Step 1: Start</h3>
+              <p>
+                We’ll guide you through eligibility, documents, and how to apply.
+                No personal or sensitive information is required.
+              </p>
+
+              <div class="wizard-actions end">
+                <button class="btn btn-primary" type="button">Next</button>
+              </div>
+            </section>
+
+            <hr />
+
+            <!-- STEP 2 -->
+            <section class="wizard-step" aria-label="Step 2: Eligibility">
+              <h3>Step 2: Eligibility</h3>
+
+              <div class="form-field">
+                <label for="statusDoc">Which document do you have?</label>
+                <select id="statusDoc" required>
+                  <option value="">Select an option</option>
+                  <option value="pr">Permanent Resident card</option>
+                  <option value="work">Work permit</option>
+                  <option value="study">Study permit</option>
+                  <option value="refugee">Refugee claimant document</option>
+                  <option value="unknown">Im not sure</option>
+                </select>
+                <p class="hint">
+                  Choose the document that best matches your current status in Canada.
+                </p>
+              </div>
+
+              <div class="wizard-actions space-between">
+                <button class="btn btn-secondary" type="button">Back</button>
+                <button class="btn btn-primary" type="button">Next</button>
+              </div>
+            </section>
+
+            <hr />
+
+            <!-- STEP 3 -->
+            <section class="wizard-step" aria-label="Step 3: Documents">
+              <h3>Step 3: Documents</h3>
+              <p>Based on your selection, prepare the following:</p>
+
+              <ul>
+                <li>Primary status document</li>
+                <li>Supporting document (if required)</li>
+                <li>Proof of address (for some application methods)</li>
+              </ul>
+
+              <div class="wizard-actions space-between">
+                <button class="btn btn-secondary" type="button">Back</button>
+                <button class="btn btn-primary" type="button">Next</button>
+              </div>
+            </section>
+
+            <hr />
+
+            <!-- STEP 4 -->
+            <section class="wizard-step" aria-label="Step 4: Apply">
+              <h3>Step 4: How do you want to apply?</h3>
+
+              <fieldset>
+                <legend>Application method</legend>
+
+                <label>
+                  <input type="radio" name="applyMethod" value="online" required />
+                  Online (if eligible)
+                </label>
+
+                <label>
+                  <input type="radio" name="applyMethod" value="inperson" />
+                  In person (Service Canada)
+                </label>
+
+                <label>
+                  <input type="radio" name="applyMethod" value="mail" />
+                  By mail
+                </label>
+              </fieldset>
+
+              <div class="wizard-actions space-between">
+                <button class="btn btn-secondary" type="button">Back</button>
+                <button class="btn btn-primary" type="button">Next</button>
+              </div>
+            </section>
+
+            <hr />
+
+            <!-- STEP 5 -->
+            <section class="wizard-step" aria-label="Step 5: After applying">
+              <h3>Step 5: After applying</h3>
+              <ul>
+                <li>What you receive</li>
+                <li>Typical processing times</li>
+                <li>What to do if you lose your SIN</li>
+                <li>How to protect your SIN</li>
+              </ul>
+
+              <div class="wizard-actions space-between">
+                <button class="btn btn-secondary" type="button">Back</button>
+                <button class="btn btn-primary" type="button">Next</button>
+              </div>
+            </section>
+
+            <hr />
+
+            <!-- STEP 6 -->
+            <section class="wizard-step" aria-label="Step 6: Review">
+              <h3>Step 6: Review & next actions</h3>
+
+              <ol>
+                <li>Gather your documents</li>
+                <li>Choose your application method</li>
+                <li>Follow official instructions</li>
+              </ol>
+
+              <div class="wizard-actions space-between">
+                <button class="btn btn-secondary" type="button">Back</button>
+                <button class="btn btn-primary" type="button">Finish</button>
+              </div>
+            </section>
+          </section>
+        </div>
+
+        <!-- SIDEBAR -->
+        <aside class="card sidebar" aria-label="Quick tips">
+          <h2>Quick tips</h2>
+          <ul>
+            <li>Do not share your SIN unless required</li>
+            <li>This guide helps you prepare, not apply</li>
+            <li>If unsure, choose “Im not sure”</li>
+          </ul>
+        </aside>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="wrap">
+        <p><strong>FirstStep_CA</strong> — Clarity over complexity.</p>
+        <p>
+          Hackathon project. Information only. Always confirm on official Government of Canada sites.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

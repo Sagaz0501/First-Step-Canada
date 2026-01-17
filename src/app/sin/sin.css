@@ -1,0 +1,161 @@
+:root {
+  --canada-red: #c00000;
+  --dark-red: #a00000;
+  --blue-gray: #26374a;
+  --bg: #ffffff;
+  --section: #f1f1f1;
+  --text: #000000;
+  --link: #284162;
+  --focus: #2b4380;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* Accessibility */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  background: #fff;
+  padding: 0.5rem;
+  border: 2px solid var(--focus);
+  z-index: 1000;
+}
+
+/* Layout */
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.layout {
+  display: grid;
+  gap: 1rem;
+}
+@media (min-width: 900px) {
+  .layout {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+/* Header & Footer */
+.site-header,
+.site-footer {
+  background: var(--dark-red);
+  color: #fff;
+}
+
+.site-header .wrap,
+.site-footer .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.primary-nav a {
+  color: #fff;
+  margin-left: 1rem;
+  text-decoration: none;
+}
+.primary-nav a:focus {
+  outline: 3px solid var(--focus);
+}
+
+/* Hero */
+.hero {
+  background: var(--section);
+}
+.hero-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* Cards */
+.card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn-primary {
+  background: var(--canada-red);
+  color: #fff;
+}
+.btn-secondary {
+  background: var(--blue-gray);
+  color: #fff;
+}
+
+/* Wizard */
+.wizard-progress {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+}
+.wizard-progress li {
+  background: #eee;
+  padding: 0.35rem 0.6rem;
+  border-radius: 999px;
+}
+.wizard-progress li[aria-current="step"] {
+  background: var(--canada-red);
+  color: #fff;
+}
+
+.wizard-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+.wizard-actions.space-between {
+  justify-content: space-between;
+}
+.wizard-actions.end {
+  justify-content: flex-end;
+}
+
+/* Forms */
+.form-field {
+  margin-bottom: 1rem;
+}
+label {
+  font-weight: 600;
+}
+select,
+input[type="radio"] {
+  margin-top: 0.25rem;
+}
+.hint {
+  font-size: 0.9rem;
+  color: #444;
+}
+
+/* Sidebar */
+.sidebar {
+  position: sticky;
+  top: 1rem;
+}

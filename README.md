@@ -1,213 +1,162 @@
-FirstStep_CA
-This project was generated using Angular CLI version 20.3.3.
+# 🇨🇦 FirstStep_CA
 
-Project Overview
-FirstStep_CA is a web application designed to support new immigrants in Canada by simplifying essential settlement processes and government-related information.
+## 📘 Project Overview
 
-The platform focuses on helping users understand real Canadian systems such as:
+**FirstStep_CA** is a web application designed to support **new immigrants in Canada** by simplifying essential government-related processes and settlement information.
 
-Social Insurance Number (SIN)
+Many newcomers struggle with complex terminology, fragmented documentation, and unclear instructions.  
+This project focuses on **clarity, structure, and accessibility**, helping users understand what they need and what to do next.
 
-G1 Driver's License (Ontario)
+### Supported Topics
+- Social Insurance Number (SIN)
+- G1 Driver’s License (Ontario)
+- Basic Taxes Information (CRA)
 
-Basic tax processes (CRA)
+---
 
-The application prioritizes clarity, accessibility, and structured guidance, transforming complex information into understandable step-by-step flows.
+## 🎯 Hackathon Goals & Metrics
 
-🎯 Hackathon Metrics Alignment
-This project fulfills hackathon objectives as follows:
+This project aligns with the hackathon objectives as follows:
 
-✅ Canada-Specific Systems
-Service Canada (SIN)
+### ✅ Canada-Specific Systems
+- Service Canada (SIN)
+- Ontario Driver Licensing (G1)
+- Canada Revenue Agency (CRA)
 
-Ontario Driver Licensing (G1)
+### ✅ Social & Systemic Accessibility
+- Helps immigrants navigate Canadian institutions
+- Reduces informational and systemic barriers
 
-Canada Revenue Agency (CRA)
+### ✅ Cognitive Accessibility
+- Step-by-step guidance
+- Simple and clear language
+- Reduced cognitive overload
+- Visual progress indicators
 
-✅ Social & Systemic Accessibility
-Supports immigrants navigating government systems
+---
 
-Reduces institutional barriers
+## 🧱 Project Structure
 
-✅ Cognitive Accessibility
-Step-by-step structure
+Initial project structure:
 
-Clear language
-
-Visual guidance
-
-Reduced cognitive overload
-
-🧱 Project Structure (Initial Commit)
-The first commit contains only the application skeleton.
-
-Current components:
-
-text
+```text
 src/app/
 │
 ├── components/
 │   ├── header/
 │   ├── footer/
 │   └── home-page/
-Components to be added:
-
-text
+│
 ├── sin/
 ├── g1/
-├── taxes/
-Each topic will later include:
+└── taxes/
+```
 
-Overview component
+Each topic will include:
+- Overview component
+- Step-by-step wizard component
 
-Step-by-step wizard component
+---
 
-👥 Team Structure
-Each team member owns one full topic:
+## 👥 Team Workflow
 
-Developer A → SIN
+Each developer owns **one complete topic**:
 
-Developer B → G1 Driver's License
-
-Developer C → Taxes
+- Developer A → SIN
+- Developer B → G1 Driver’s License
+- Developer C → Taxes
 
 Each developer is responsible for:
+- UI implementation
+- Content creation
+- Wizard logic
+- Validation
 
-Content
+---
 
-UI
+## ⚙️ Technology Stack
 
-Wizard steps
+- Angular
+- Angular Material
+- TypeScript
+- SCSS
 
-Validation logic
+### UI Standards
+- Cards: `mat-card`
+- Buttons: `mat-button`, `mat-raised-button`
+- Wizard: **Angular Material Stepper (`mat-stepper`)**
 
-🧩 Technology Stack
-Angular
+All step-by-step flows must use `mat-stepper` for consistency.
 
-Angular Material
+---
 
-TypeScript
+## 🎨 Government of Canada Color Palette
 
-SCSS
+| Usage | Color | Hex |
+|------|------|------|
+| Primary (Canada Red) | Red | `#C00000` |
+| Header / Footer | Dark Red | `#A00000` |
+| Secondary | Dark Blue-Gray | `#26374A` |
+| Background | White | `#FFFFFF` |
+| Section Background | Light Gray | `#F1F1F1` |
+| Text | Black | `#000000` |
+| Links | Government Blue | `#284162` |
+| Focus / Highlight | Blue | `#2B4380` |
 
-UI Standardization
-Cards: mat-card
+---
 
-Buttons: mat-button, mat-raised-button
+## 🌱 Git Workflow
 
-Wizard: Angular Material Stepper (mat-stepper)
+### Clone the repository
 
-All step-by-step flows must use mat-stepper for consistency.
-
-🎨 Official Government of Canada Color Palette
-To reflect a real Canadian government visual identity, the project follows colors inspired by the official GCWeb Design System.
-
-Purpose	Color	Hex
-Primary (Canada Red)	Red	#C00000
-Dark Red (Header / Footer)	Deep Red	#A00000
-Secondary (Canada Gray)	Dark Gray	#26374A
-Background	White	#FFFFFF
-Section Background	Light Gray	#F1F1F1
-Text Primary	Black	#000000
-Links	Government Blue	#284162
-Focus / Highlight	Blue	#2B4380
-⚠️ These colors are adapted from the official Government of Canada web standards to ensure a familiar and trustworthy appearance.
-
-🇨🇦 Why This Matters
-Using official Canadian-style colors helps:
-
-Build trust
-
-Improve credibility
-
-Make the platform feel institutional and familiar
-
-Strengthen the "Best Canadian Focus" evaluation
-
-🌱 Git Workflow
-Clone the repository:
-bash
-git clone <REPOSITORY_URL>
-cd firststep_ca
+```bash
+git clone https://github.com/Sagaz0501/First-Step-Canada.git
+cd FirstStep_CA
 npm install
-Create your branch:
-bash
+```
+
+### Create your feature branch
+
+```bash
 git checkout -b feat/sin
-# OR
 git checkout -b feat/g1
-# OR
 git checkout -b feat/taxes
-Commit your work:
-bash
+```
+
+### Commit and push your changes
+
+```bash
 git add .
 git commit -m "feat: add SIN step-by-step wizard"
 git push -u origin feat/sin
-All changes must be submitted via Pull Request. Direct commits to main are not allowed.
+```
 
-♿ Accessibility Requirements
-Accessibility is a core requirement of this project.
+All changes must be submitted via **Pull Requests**.  
+Direct commits to `main` are not allowed.
 
-Mandatory practices:
+---
 
-Semantic HTML (header, main, section, footer)
+## ♿ Accessibility Requirements
 
-Proper heading order
+Accessibility is mandatory.
 
-Accessible labels for inputs
+### Required practices
+- Semantic HTML (`header`, `main`, `section`, `footer`)
+- Proper heading hierarchy (`h1 → h2 → h3`)
+- Keyboard navigation
+- Accessible labels for all inputs
+- Visible focus indicators
+- Sufficient contrast
+- No information conveyed by color alone
 
-Keyboard navigation
+Angular Material ARIA attributes must not be removed.
 
-Visible focus indicators
+---
 
-High contrast text
+## 🚀 Project Goal
 
-No information conveyed by color alone
+The goal of **FirstStep_CA** is not to replace government websites, but to help newcomers **understand Canadian processes clearly and confidently**.
 
-Angular Material accessibility features must not be removed
+---
 
-🚀 Development Commands
-Development server
-To start a local development server, run:
-
-bash
-ng serve
-Once the server is running, open your browser and navigate to http://localhost:4200/. The application will automatically reload whenever you modify any of the source files.
-
-Code scaffolding
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-bash
-ng generate component component-name
-For a complete list of available schematics (such as components, directives, or pipes), run:
-
-bash
-ng generate --help
-Building
-To build the project run:
-
-bash
-ng build
-This will compile your project and store the build artifacts in the dist/ directory. By default, the production build optimizes your application for performance and speed.
-
-Running unit tests
-To execute unit tests with the Karma test runner, use the following command:
-
-bash
-ng test
-Running end-to-end tests
-For end-to-end (e2e) testing, run:
-
-bash
-ng e2e
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-🎯 Project Goal
-The goal of FirstStep_CA is not to replicate government websites, but to help newcomers understand them — clearly, calmly, and accessibly.
-
-
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+**Clarity over complexity. Accessibility over features.**

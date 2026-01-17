@@ -1,1 +1,28 @@
-<p>footer works!</p>
+
+<footer class="footer" role="contentinfo">
+  <div class="footer-container">
+
+    <div class="footer-left">
+      <div class="footer-title">FirstStep_CA</div>
+      <div class="footer-text">
+        Plain-language, step-by-step help for newcomers in Canada.
+      </div>
+    </div>
+
+    <nav class="footer-links" aria-label="Footer links">
+      <a class="footer-link" href="#" (click)="$event.preventDefault()">Privacy</a>
+      <a class="footer-link" href="#" (click)="$event.preventDefault()">Terms</a>
+      <a class="footer-link" href="#" (click)="$event.preventDefault()">Accessibility</a>
+      <a class="footer-link" href="#" (click)="$event.preventDefault()">Contact</a>
+    </nav>
+
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-container bottom-inner">
+      <span>© {{ currentYear }} FirstStep_CA</span>
+      <span class="bottom-right">Built for Hack for Accessibility</span>
+    </div>
+  </div>
+</footer>
+

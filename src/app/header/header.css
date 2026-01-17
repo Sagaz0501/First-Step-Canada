@@ -1,0 +1,73 @@
+:host {
+  display: block;
+
+  /* Define variables INSIDE this component scope */
+  --canada-red: #c00000;
+  --canada-dark-red: #a00000;
+  --canada-blue: #26374a;
+  --focus-blue: #2b4380;
+}
+
+.header {
+  background-color: var(--canada-dark-red);
+  color: #ffffff;
+  border-bottom: 4px solid var(--canada-red);
+}
+
+.header-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.flag {
+  font-size: 20px;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.nav {
+  display: flex;
+  gap: 18px;
+}
+
+.nav-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.nav-link:focus-visible {
+  outline: 3px solid var(--focus-blue);
+  outline-offset: 3px;
+}

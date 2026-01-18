@@ -1,19 +1,26 @@
 :host {
   display: block;
+  box-sizing: border-box;
 
-  --canada-red: #c00000;
-  --secondary: #26374a;
-  --bg: #ffffff;
-  --section: #f1f1f1;
-  --text: #000000;
-  --focus-blue: #2b4380;
+  /* TOKENS (your new palette) */
+  --bg-main: #ffffff;
+  --bg-accent: #f1f5f9;
+
+  --accent: #2563eb;
+  --accent-soft: #e0e7ff;
+
+  --text-main: #0f172a;
+  --text-muted: #475569;
+
+  --border: #e2e8f0;
+  --focus-ring: rgba(37, 99, 235, 0.25);
 }
 
 .page {
   max-width: 1100px;
   margin: 0 auto;
   padding: 22px 20px;
-  color: var(--text);
+  color: var(--text-main);
 }
 
 .title {
@@ -23,23 +30,25 @@
 }
 
 .lead {
-  color: var(--secondary);
+  color: var(--text-muted);
   line-height: 1.5;
   margin: 0 0 16px 0;
 }
 
 .panel {
-  background: var(--section);
-  border-left: 6px solid var(--canada-red);
+  background: var(--bg-accent);
+  border-left: 6px solid var(--accent);
   border-radius: 10px;
   padding: 16px;
   margin: 14px 0;
+  border: 1px solid var(--border);
 }
 
 .panel h2 {
   margin: 0 0 8px 0;
   font-size: 16px;
   font-weight: 800;
+  color: var(--text-main);
 }
 
 ul {
@@ -50,6 +59,7 @@ ul {
 li {
   margin: 8px 0;
   line-height: 1.4;
+  color: var(--text-main);
 }
 
 .kv {
@@ -66,10 +76,11 @@ li {
 
 .kv-label {
   font-weight: 800;
+  color: var(--text-main);
 }
 
 .kv-value {
-  color: var(--secondary);
+  color: var(--text-muted);
 }
 
 .actions {
@@ -79,8 +90,10 @@ li {
   flex-wrap: wrap;
 }
 
+/* Better focus ring */
 button:focus-visible,
 a:focus-visible {
-  outline: 3px solid var(--focus-blue);
+  outline: 3px solid var(--accent);
   outline-offset: 3px;
+  box-shadow: 0 0 0 6px var(--focus-ring);
 }

@@ -338,3 +338,7 @@ header.header{
 body{
   padding-top: 84px; 
 }
+
+html {
+  scroll-behavior: smooth;
+}

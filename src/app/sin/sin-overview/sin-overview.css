@@ -422,3 +422,34 @@ a.btn-primary[mat-raised-button] {
 @media (max-width: 640px) {
   .date-note { padding: 12px 14px 12px 20px; }
 }
+
+.hero__with-media {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 24px;
+  align-items: center;
+}
+
+.hero__media img {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+  background: #fff;
+}
+
+/* mobile */
+@media (max-width: 900px) {
+  .hero__with-media {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__media {
+    order: -1; /* картинка сверху */
+    text-align: center;
+  }
+
+  .hero__media img {
+    max-width: 320px;
+  }
+}

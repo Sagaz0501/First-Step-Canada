@@ -1,17 +1,28 @@
 <main class="page" role="main" aria-label="SIN overview">
   <!-- Hero -->
   <header class="hero" aria-label="SIN overview header">
-    <div class="hero__top">
-      <h1 class="hero__title">
-        {{ process?.title || 'Social Insurance Number (SIN)' }}
-      </h1>
+    <div class="hero__top hero__with-media">
+      <div class="hero__text">
+        <h1 class="hero__title">
+          {{ process?.title || 'Social Insurance Number (SIN)' }}
+        </h1>
 
-      <p class="hero__lead">
-        {{
-          process?.overview ||
-          'A SIN is a 9-digit number you need to work in Canada, file taxes, and access some government benefits. Keep it private and only share it when legally required.'
-        }}
-      </p>
+        <p class="hero__lead">
+          {{
+            process?.overview ||
+            'A SIN is a 9-digit number you need to work in Canada, file taxes, and access some government benefits. Keep it private and only share it when legally required.'
+          }}
+        </p>
+      </div>
+
+      <!-- SIN image -->
+      <div class="hero__media">
+        <img
+          src="assets/images/sin-example.png"
+          alt="Example of a Social Insurance Number confirmation letter from Service Canada"
+          loading="lazy"
+        />
+      </div>
     </div>
 
     <div class="hero__cta">
@@ -19,7 +30,6 @@
         mat-raised-button
         class="btn-primary"
         [routerLink]="['/sin/steps']"
-        aria-label="Start the step-by-step SIN wizard"
       >
         Start step-by-step wizard
       </a>

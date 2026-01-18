@@ -21,18 +21,17 @@
           </p>
 
           <div class="hero-actions" role="group" aria-label="Primary actions">
-            <div class="cta">
-              <a class="btn-wrap" routerLink="/planner">
-                <span class="btn btn-primary">Start my journey <span class="btn-arrow">→</span></span>
-              </a>
-            </div>
+            <!-- primary -->
+            <a class="btn-wrap" href="#topics" (click)="scrollTo('topics', $event)">
+              <span class="btn btn-primary">
+                Start my journey →
+              </span>
+            </a>
 
-            <div class="cta">
-              <a class="btn btn-secondary" href="#topics" aria-label="Browse guides">
-                Browse guides <span class="btn-arrow" aria-hidden="true">→</span>
-              </a>
-            </div>
-
+            <!-- secondary -->
+            <a class="btn btn-secondary" href="#topics" (click)="scrollTo('topics', $event)">
+              Browse guides →
+            </a>
           </div>
         </div>
       </div>

@@ -1,0 +1,97 @@
+:host {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 9999;
+}
+
+.floating-btn {
+  width: 56px;
+  height: 56px;
+  font-weight: 900;
+}
+
+.drawer {
+  position: fixed;
+  right: 18px;
+  bottom: 86px;
+  width: min(360px, calc(100vw - 36px));
+}
+
+.card {
+  border-radius: 14px;
+}
+
+.topics {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.msgs {
+  height: 260px;
+  overflow: auto;
+  padding: 8px 4px;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.msg {
+  display: flex;
+  margin: 8px 0;
+}
+
+.msg.user {
+  justify-content: flex-end;
+}
+
+.bubble {
+  max-width: 85%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  line-height: 1.35;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+.msg.user .bubble {
+  background: #e0e7ff;
+}
+
+.msg.bot .bubble {
+  background: #f1f5f9;
+}
+
+.links {
+  margin-top: 8px;
+  display: grid;
+  gap: 6px;
+}
+
+.links a {
+  text-decoration: underline;
+}
+
+.input-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  align-items: center;
+}
+
+.input {
+  flex: 1;
+}
+
+.send {
+  height: 56px;
+}
+
+/* focus */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.25);
+  outline-offset: 3px;
+}

@@ -1,0 +1,63 @@
+<!-- Floating button -->
+<button
+  class="floating-btn"
+  mat-fab
+  type="button"
+  (click)="toggle()"
+  aria-label="Open help chat"
+>
+  ?
+</button>
+
+<!-- Chat drawer -->
+<section class="drawer" *ngIf="isOpen" role="dialog" aria-label="Help chat">
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-card-title>Help chat</mat-card-title>
+      <button mat-icon-button type="button" (click)="toggle()" aria-label="Close chat">
+        ✕
+      </button>
+    </mat-card-header>
+
+    <mat-card-content>
+      <!-- Topics -->
+      <div class="topics" aria-label="Topics">
+        <button
+          mat-stroked-button
+          type="button"
+          *ngFor="let t of faq.getQuickOptions()"
+          (click)="setTopic(t.topic)"
+        >
+          {{ t.label }}
+        </button>
+      </div>
+
+      <!-- Messages -->
+      <div class="msgs" aria-label="Chat messages">
+        <div *ngFor="let m of messages" class="msg" [class.user]="m.from==='user'" [class.bot]="m.from==='bot'">
+          <div class="bubble">
+            {{ m.text }}
+            <div class="links" *ngIf="m.links?.length">
+              <a *ngFor="let l of m.links" [href]="l.url" target="_blank" rel="noopener">
+                {{ l.label }}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Input -->
+      <div class="input-row">
+        <mat-form-field appearance="outline" class="input">
+          <mat-label>Ask a question</mat-label>
+          <input matInput [(ngModel)]="input" (keydown.enter)="send()" />
+        </mat-form-field>
+
+        <button mat-raised-button class="send" type="button" (click)="send()">
+          Send
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</section>
+

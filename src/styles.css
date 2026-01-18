@@ -336,5 +336,5 @@ header.header{
 
 /* push content down so it doesn't go under header */
 body{
-  padding-top: 84px; /* если хедер выше/ниже — поменяешь */
+  padding-top: 84px; 
 }

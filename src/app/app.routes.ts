@@ -10,20 +10,52 @@ import { G1Wizard } from './driverLicense/g-license-wizard/g-license-wizard';
 
 
 export const routes: Routes = [
-  { path: '', component: HomePage },
+  // Home
+  {
+    path: '',
+    component: HomePage,
+    data: { anim: 'home' },
+  },
 
-  // SIN
-  { path: 'sin', component: SinOverview },
-  { path: 'sin/steps', component: SinWizard },
+  // ===== SIN =====
+  {
+    path: 'sin',
+    component: SinOverview,
+    data: { anim: 'sin' },
+  },
+  {
+    path: 'sin/steps',
+    component: SinWizard,
+    data: { anim: 'sin-steps' },
+  },
 
-  // Taxes
-  { path: 'taxes', component: TaxesOverview },  
-  { path: 'taxes/steps', component: TaxesWizard },
+  // ===== Taxes =====
+  {
+    path: 'taxes',
+    component: TaxesOverview,
+    data: { anim: 'taxes' },
+  },
+  {
+    path: 'taxes/steps',
+    component: TaxesWizard,
+    data: { anim: 'taxes-steps' },
+  },
 
-  // G license
-  { path: 'g-license', component: GLicense },
-  { path: 'g1/steps', component: G1Wizard },
+  // ===== Driver’s license =====
+  {
+    path: 'g-license',
+    component: GLicense,
+    data: { anim: 'g-license' },
+  },
+  {
+    path: 'g-license/steps',
+    component: G1Wizard,
+    data: { anim: 'g-license-steps' },
+  },
 
   // fallback
-  { path: '**', redirectTo: '' },
+  {
+    path: '**',
+    redirectTo: '',
+  },
 ];

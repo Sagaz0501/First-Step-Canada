@@ -1,9 +1,8 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
-/* Angular Material */
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatStepperModule } from '@angular/material/stepper';
@@ -12,16 +11,18 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
+import { ProcessDataService, ProcessInfo } from '../../services/process-data.service';
+
+
 type Step = { title: string; text: string };
 
 @Component({
-  selector: 'app-g-license',
+  selector: 'app-g1-wizard',
   standalone: true,
   imports: [
     CommonModule,
-    RouterLink,
+    RouterModule,
     ReactiveFormsModule,
-
     MatCardModule,
     MatButtonModule,
     MatStepperModule,
@@ -30,12 +31,15 @@ type Step = { title: string; text: string };
     MatInputModule,
     MatCheckboxModule,
   ],
-  templateUrl: './g-license.html',
-  styleUrl: './g-license.css',
+  templateUrl: './g-license-wizard.html',
+  styleUrl: './g-license-wizard.css',
 })
-export class GLicense {
+export class G1Wizard {
   startForm = new FormGroup({
-    startPoint: new FormControl<'new' | 'foreign' | 'g1' | 'g2' | ''>('', { nonNullable: true, validators: [Validators.required] }),
+    startPoint: new FormControl<'new' | 'foreign' | 'g1' | 'g2' | ''>('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
     city: new FormControl<string>('', { nonNullable: true }),
   });
 

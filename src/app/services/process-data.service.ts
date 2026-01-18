@@ -141,6 +141,29 @@ export class ProcessDataService {
             'After passing the test, you will receive your G1 license.',
         },
       ],
+      keyPoints: [
+        'Ontario uses a graduated licensing system: G1 → G2 → G.',
+        'G1 is a knowledge test + learner rules. G2 is your first road test. G is the full licence.',
+        'Fees and rules can change — always confirm on official DriveTest / Ontario pages.',
+        'If you fail a test, you usually pay again to rebook that attempt.',
+      ],
+
+      keyDates: [
+        { label: 'G1 licence package (knowledge + G2 test + 5-year licence)', value: '$159.75 (DriveTest fee)' },
+        { label: 'Knowledge test (extra attempt / retake)', value: '$16.00' },
+        { label: 'G2 road test (one attempt)', value: '$53.75' },
+        { label: 'G road test (one attempt)', value: '$91.25' },
+        { label: 'Note', value: 'Fees can change — confirm on DriveTest before booking.' },
+      ],
+
+      glossary: [
+        { term: 'G1', meaning: 'Learner licence level. You pass a knowledge test and drive with restrictions.' },
+        { term: 'G2', meaning: 'Intermediate licence level. You pass your first road test.' },
+        { term: 'G', meaning: 'Full licence. You pass the final road test.' },
+        { term: 'Knowledge test', meaning: 'Written test about rules of the road and road signs.' },
+        { term: 'Road test', meaning: 'Driving test in a car with an examiner (G2 and G levels).' },
+        { term: 'DriveTest', meaning: 'Ontario test centres that run knowledge tests and road tests for MTO.' },
+      ],
     },
 
 // ===============================

@@ -1,0 +1,177 @@
+<main id="main" class="page" role="main" aria-label="G license step-by-step wizard">
+  <div class="top">
+    <h1 class="title">G license planner (Ontario)</h1>
+    <p class="lead">
+      Step-by-step guide for newcomers. This wizard helps you build a simple checklist
+      based on where you’re starting.
+    </p>
+  </div>
+
+  <mat-card class="notice" role="note" aria-label="Important note">
+    <mat-card-content>
+      <strong>Important:</strong> Rules, fees, and timelines can change. Always confirm details on official Ontario sources
+      before booking tests.
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="card">
+    <mat-card-content>
+      <mat-stepper class="stepper" [linear]="true">
+
+        <!-- Step 1 -->
+        <mat-step [stepControl]="startForm">
+          <form [formGroup]="startForm">
+            <ng-template matStepLabel>Start point</ng-template>
+
+            <p class="step-text">
+              Choose where you are starting. This helps show the right path.
+            </p>
+
+            <div class="grid">
+              <mat-form-field appearance="outline" class="field">
+                <mat-label>Where are you starting?</mat-label>
+                <mat-select formControlName="startPoint" required>
+                  <mat-option value="new">I’m new (no license yet)</mat-option>
+                  <mat-option value="foreign">I have a foreign license</mat-option>
+                  <mat-option value="g1">I already have G1</mat-option>
+                  <mat-option value="g2">I already have G2</mat-option>
+                </mat-select>
+                <mat-hint>Foreign license rules depend on country and documents.</mat-hint>
+                <mat-error *ngIf="startForm.controls.startPoint.invalid">
+                  Please select an option.
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="field">
+                <mat-label>City (optional)</mat-label>
+                <input matInput formControlName="city" autocomplete="address-level2" />
+                <mat-hint>We don’t store this. It only personalizes wording.</mat-hint>
+              </mat-form-field>
+            </div>
+
+            <div class="actions">
+              <button mat-raised-button class="btn-primary" matStepperNext>
+                Continue
+              </button>
+              <a mat-button [routerLink]="['/g1']">Back to overview</a>
+            </div>
+          </form>
+        </mat-step>
+
+        <!-- Step 2 -->
+        <mat-step [stepControl]="goalsForm">
+          <form [formGroup]="goalsForm">
+            <ng-template matStepLabel>What you want</ng-template>
+
+            <p class="step-text">
+              Select what you want to see. We will include it in your result.
+            </p>
+
+            <div class="checklist" role="group" aria-label="Goals">
+              <mat-checkbox formControlName="goalSteps">Step-by-step checklist</mat-checkbox>
+              <mat-checkbox formControlName="goalDocs">What documents you may need</mat-checkbox>
+              <mat-checkbox formControlName="goalCosts">Costs & timelines (high level)</mat-checkbox>
+            </div>
+
+            <div class="actions">
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-raised-button class="btn-primary" matStepperNext>
+                Continue
+              </button>
+            </div>
+          </form>
+        </mat-step>
+
+        <!-- Step 3 -->
+        <mat-step>
+          <ng-template matStepLabel>Your checklist</ng-template>
+
+          <p class="step-text">
+            Here is your recommended path. Always confirm details on official Ontario sources when booking.
+          </p>
+
+          <div
+            class="result"
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+            tabindex="-1"
+            #resultBox
+          >
+            <h2 class="h2">
+              Recommended next steps <span *ngIf="cityText">{{ cityText }}</span>
+            </h2>
+
+            <ol class="steps" *ngIf="resultSteps.length">
+              <li *ngFor="let s of resultSteps">
+                <strong>{{ s.title }}</strong>
+                <div class="meaning">{{ s.text }}</div>
+              </li>
+            </ol>
+
+            <p class="muted" *ngIf="!resultSteps.length">
+              Click “Refresh result” to generate your checklist.
+            </p>
+
+            <div class="panel" *ngIf="resultNote">
+              <p><strong>Note:</strong> {{ resultNote }}</p>
+            </div>
+
+            <div class="callouts">
+              <mat-card class="callout" *ngIf="goalsForm.value.goalDocs">
+                <mat-card-title>Common documents (examples)</mat-card-title>
+                <mat-card-content>
+                  <ul>
+                    <li>Government ID (passport / PR card, etc.)</li>
+                    <li>Any existing driving licence (if you have one)</li>
+                    <li>Proof of identity as required by the test centre</li>
+                  </ul>
+                </mat-card-content>
+              </mat-card>
+
+              <mat-card class="callout" *ngIf="goalsForm.value.goalCosts">
+                <mat-card-title>Costs & timelines (high level)</mat-card-title>
+                <mat-card-content>
+                  <p class="muted">
+                    Fees and waiting periods can change. Treat this as an overview, then verify official info when booking.
+                  </p>
+                </mat-card-content>
+              </mat-card>
+            </div>
+          </div>
+
+          <p *ngIf="error" class="error" role="alert">
+            {{ error }}
+          </p>
+
+          <div class="actions">
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-raised-button class="btn-primary" (click)="buildResult()">
+              Refresh result
+            </button>
+            <button mat-button (click)="resetAll()">Reset</button>
+            <a mat-button [routerLink]="['/g1']">Finish</a>
+            <a mat-button [routerLink]="['/']">Home</a>
+          </div>
+
+        </mat-step>
+
+      </mat-stepper>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Optional FAQ (keep in wizard or move to overview if you prefer) -->
+  <section aria-label="FAQ" class="panel">
+    <h2>FAQ</h2>
+
+    <details>
+      <summary>Is this guide official?</summary>
+      <p>No. It’s a simplified guide for newcomers. Always confirm requirements on official Ontario websites.</p>
+    </details>
+
+    <details>
+      <summary>Can I skip steps if I have a foreign licence?</summary>
+      <p>Sometimes. It depends on your country, documents, and validation rules.</p>
+    </details>
+  </section>
+</main>

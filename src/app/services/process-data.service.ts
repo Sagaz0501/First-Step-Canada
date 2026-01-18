@@ -53,38 +53,59 @@ export class ProcessDataService {
     // ===============================
     // SIN PROCESS
     // ===============================
+{
+  id: 'sin',
+  title: 'Social Insurance Number (SIN)',
+  shortDescription: 'A SIN is usually required to work and for taxes in Canada.',
+
+  overview:
+    'A Social Insurance Number (SIN) is a 9-digit number issued by the Government of Canada. You usually need it to work in Canada and to access some government programs and benefits.',
+
+  keyPoints: [
+    'Keep your SIN private (like a password). Only share it when legally required.',
+    'Most people apply online or in person through Service Canada.',
+    'You do not usually need a SIN to rent a home or buy a phone plan.',
+  ],
+
+  steps: [
     {
-      id: 'sin',
-      title: 'Social Insurance Number (SIN)',
-      shortDescription:
-        'A SIN is required to work and pay taxes in Canada.',
-
-      overview:
-        'A Social Insurance Number (SIN) is a 9-digit number issued by the Government of Canada. You need it to work in Canada and to access government programs and benefits.',
-
-      steps: [
-        {
-          title: 'Prepare your documents',
-          description:
-            'You must bring a valid passport and your study or work permit.',
-        },
-        {
-          title: 'Check your eligibility',
-          description:
-            'Make sure your immigration status allows you to work or study in Canada.',
-        },
-        {
-          title: 'Visit Service Canada',
-          description:
-            'Go to a Service Canada office or apply online through the official website.',
-        },
-        {
-          title: 'Receive your SIN',
-          description:
-            'If your documents are valid, your SIN will be issued the same day.',
-        },
-      ],
+      title: 'Understand what a SIN is',
+      description:
+        'A SIN is a 9-digit number used for work and taxes. You will use it for payroll and when filing taxes with the CRA.',
     },
+    {
+      title: 'Check your eligibility',
+      description:
+        'You must have valid status in Canada (citizen, permanent resident, or temporary resident with authorization to work or study).',
+    },
+    {
+      title: 'Prepare your documents',
+      description:
+        'Required documents depend on your status. Temporary residents often use a passport plus a study or work permit. Bring original documents, not photocopies.',
+    },
+    {
+      title: 'Choose how you will apply',
+      description:
+        'You can apply online or in person at a Service Canada office. Mail may be available but is usually slower.',
+    },
+    {
+      title: 'Receive your SIN confirmation',
+      description:
+        'If your documents are accepted, you will receive a SIN confirmation. In person can often be same-day, while other methods may take longer.',
+    },
+    {
+      title: 'Protect your SIN and use it safely',
+      description:
+        'Share your SIN only with trusted official places (employer/payroll, CRA, some banks). Store it securely and avoid sharing it casually.',
+    },
+  ],
+
+  glossary: [
+    { term: 'Service Canada', meaning: 'A Government of Canada service that helps with programs like SIN applications.' },
+    { term: 'CRA', meaning: 'Canada Revenue Agency (the organization that handles taxes).' },
+    { term: 'Temporary resident', meaning: 'A person in Canada on a permit (for example, study or work permit).' },
+  ],
+},
 
     // ===============================
     // G1 DRIVER LICENSE PROCESS

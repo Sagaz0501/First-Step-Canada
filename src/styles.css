@@ -4,7 +4,6 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 /* =========================
    Global tokens (safe)
-========================= */
 /* styles.css */
 :root {
   --bg-main: #ffffff;
@@ -32,7 +31,6 @@ body{
 
 /* =========================
    Accessibility: skip link
-========================= */
 .skip-link{
   position: absolute;
   left: 12px;
@@ -55,7 +53,6 @@ body{
 
 /* =========================
    Header
-========================= */
 .site-header{
   padding: 44px 16px 24px;
 }
@@ -83,7 +80,6 @@ body{
 
 /* =========================
    Page layout
-========================= */
 .page{
   max-width: 980px;
   margin: 0 auto;
@@ -102,7 +98,6 @@ body{
 
 /* =========================
    Cards (Material wrapper)
-========================= */
 .card.mat-mdc-card{
   border-radius: var(--radius);
   background: var(--surface);
@@ -116,7 +111,6 @@ body{
 
 /* =========================
    Stepper
-========================= */
 .stepper.mat-stepper-horizontal,
 .stepper.mat-stepper-vertical{
   background: transparent;
@@ -145,7 +139,6 @@ body{
 
 /* =========================
    Form fields spacing
-========================= */
 .hint{
   margin: 0 0 14px;
   color: var(--text-weak);
@@ -165,7 +158,6 @@ body{
 
 /* =========================
    Actions row
-========================= */
 .actions{
   display: flex;
   gap: 10px;
@@ -177,7 +169,6 @@ body{
 
 /* =========================
    Result box
-========================= */
 .result{
   margin-top: 10px;
   padding: 14px 14px;
@@ -240,7 +231,6 @@ body{
 
 /* =========================
    Error text
-========================= */
 .error{
   margin: 12px 0 0;
   padding: 10px 12px;
@@ -252,7 +242,6 @@ body{
 
 /* =========================
    FAQ details
-========================= */
 details{
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
@@ -272,7 +261,6 @@ details p{
 
 /* =========================
    Footer
-========================= */
 .site-footer{
   padding: 28px 16px 40px;
   color: var(--muted);
@@ -281,7 +269,6 @@ details p{
 
 /* =========================
    Responsive
-========================= */
 @media (max-width: 640px){
   .header-inner{ padding: 18px; }
   .card .mat-mdc-card-content{ padding: 14px; }

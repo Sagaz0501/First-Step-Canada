@@ -1,0 +1,76 @@
+<main class="page" role="main" aria-label="SIN overview">
+  <h1 class="title">{{ process.title }}</h1>
+  <p class="lead">{{ process.overview }}</p>
+
+  <!-- Key Points -->
+  <section class="panel" aria-label="Key points" *ngIf="process.keyPoints?.length">
+    <h2>Key points</h2>
+    <ul>
+      <li *ngFor="let point of process.keyPoints">{{ point }}</li>
+    </ul>
+  </section>
+
+  <!-- Key Dates (optional for SIN) -->
+  <section class="panel" aria-label="Key dates" *ngIf="process.keyDates?.length">
+    <h2>Key dates</h2>
+    <div class="kv" role="list">
+      <div class="kv-row" role="listitem" *ngFor="let d of process.keyDates">
+        <span class="kv-label">{{ d.label }}:</span>
+        <span class="kv-value">{{ d.value }}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Step preview using Stepper -->
+  <section class="panel" aria-label="Step-by-step preview" *ngIf="process.steps?.length">
+    <h2>Step-by-step preview</h2>
+
+    <mat-card>
+      <mat-card-content>
+        <mat-stepper [linear]="false">
+          <mat-step *ngFor="let s of process.steps; let i = index" [completed]="false">
+            <ng-template matStepLabel>
+              Step {{ i + 1 }} — {{ s.title }}
+            </ng-template>
+
+            <p class="step-desc">{{ s.description }}</p>
+
+            <div class="actions">
+              <button mat-button matStepperPrevious *ngIf="i > 0">Back</button>
+              <button mat-button matStepperNext *ngIf="i < process.steps.length - 1">Next</button>
+
+              <a
+                mat-raised-button
+                class="btn-primary"
+                [routerLink]="['/sin/steps']"
+                aria-label="Start the full SIN step-by-step wizard"
+              >
+                Start full guide
+              </a>
+            </div>
+          </mat-step>
+        </mat-stepper>
+      </mat-card-content>
+    </mat-card>
+  </section>
+
+  <!-- Glossary (optional for SIN) -->
+  <section class="panel" aria-label="Glossary" *ngIf="process.glossary?.length">
+    <h2>Glossary</h2>
+
+    <div class="kv" role="list">
+      <div class="kv-row" role="listitem" *ngFor="let g of process.glossary">
+        <span class="kv-label">{{ g.term }}:</span>
+        <span class="kv-value">{{ g.meaning }}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <div class="actions">
+    <a mat-raised-button class="btn-primary" [routerLink]="['/sin/steps']">
+      Start step-by-step wizard
+    </a>
+    <a mat-button [routerLink]="['/']">Back to Home</a>
+  </div>
+</main>

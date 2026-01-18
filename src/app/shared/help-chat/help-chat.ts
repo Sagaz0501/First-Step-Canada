@@ -10,13 +10,22 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 import { FaqChat, ChatTopic } from '../../services/faq-chat';
+import { LlmChatService } from '../../services/llm_chat.service';
 
-type Msg = { from: 'user' | 'bot'; text: string; links?: { label: string; url: string }[] };
+import { ViewChild, ElementRef } from '@angular/core';
+
+
+type Msg = {
+  from: 'user' | 'bot';
+  text: string;
+  links?: { label: string; url: string }[];
+};
 
 @Component({
   selector: 'app-help-chat',
+  standalone: true, // ✅ IMPORTANTÍSIMO para poder importarlo en app.ts
   imports: [
-        CommonModule,
+    CommonModule,
     FormsModule,
     MatButtonModule,
     MatCardModule,
@@ -33,12 +42,14 @@ export class HelpChat {
 
   topic: ChatTopic = 'general';
   input = '';
+  isSending = false;
 
   messages: Msg[] = [
-    { from: 'bot', text: 'Hi! Choose a topic and ask a question. I’ll answer using our official quick guides.' }
+    { from: 'bot', text: 'Hi! Choose a topic and ask a question. I’ll answer using our official quick guides.' },
   ];
 
-  constructor(public faq: FaqChat) {}
+  // ✅ Volvemos a dejar faq porque tu HTML lo usa (chips / quick options)
+  constructor(public faq: FaqChat, private llm: LlmChatService) {}
 
   toggle() {
     this.isOpen = !this.isOpen;
@@ -49,26 +60,50 @@ export class HelpChat {
     this.messages.push({ from: 'bot', text: `Topic set to: ${t.toUpperCase()}. Ask your question.` });
   }
 
-  send() {
+  async send() {
     const text = this.input.trim();
-    if (!text) return;
+    if (!text || this.isSending) return;
+
+    this.isSending = true;
 
     this.messages.push({ from: 'user', text });
     this.input = '';
 
-    const found = this.faq.findBestAnswer(text, this.topic);
+    // placeholder typing
+    this.messages.push({ from: 'bot', text: 'Typing...' });
+    const typingIndex = this.messages.length - 1;
 
-    if (found) {
-      this.messages.push({ from: 'bot', text: found.answer, links: found.links });
-    } else {
-      this.messages.push({
+    try {
+      const payload = this.messages
+        .filter(m => m.text !== 'Typing...')
+        .map(m => ({ from: m.from, text: m.text }));
+
+      const resp = await this.llm.send(this.topic, payload);
+
+      this.messages[typingIndex] = { from: 'bot', text: resp.answer };
+    } catch (e) {
+      this.messages[typingIndex] = {
         from: 'bot',
-        text: `I’m not sure about that yet. Try asking with different keywords or check official links below.`,
+        text: 'Error connecting to server. Make sure backend is running on http://localhost:3000',
         links: [
           { label: 'Canada.ca Taxes', url: 'https://www.canada.ca/en/services/taxes.html' },
-          { label: 'Service Canada (SIN)', url: 'https://www.canada.ca/en/employment-social-development/services/sin.html' }
-        ]
-      });
+          { label: 'Service Canada (SIN)', url: 'https://www.canada.ca/en/employment-social-development/services/sin.html' },
+        ],
+      };
+    } finally {
+      this.isSending = false;
     }
   }
+  @ViewChild('msgsScroller') msgsScroller?: ElementRef<HTMLDivElement>;
+
+trackMsg = (_: number, m: any) => m; // simple trackBy
+
+private scrollToBottom() {
+  // espera al render antes de scrollear
+  setTimeout(() => {
+    const el = this.msgsScroller?.nativeElement;
+    if (!el) return;
+    el.scrollTop = el.scrollHeight;
+  }, 0);
+}
 }

@@ -6,7 +6,6 @@
   (click)="toggle()"
   aria-label="Open help chat"
 >
-  <!-- chat icon -->
   <svg class="fab-svg" viewBox="0 0 24 24" aria-hidden="true">
     <path
       d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9l-5 3v-3H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm0 2v9h2v2.2L8.6 15H20V6H4Zm3 2h10v2H7V8Zm0 4h7v2H7v-2Z"
@@ -22,7 +21,10 @@
     <mat-card-header class="card-header">
       <div class="header-left">
         <mat-card-title class="card-title">Help chat</mat-card-title>
-        <div class="header-subtitle">Quick answers + links</div>
+        <div class="header-subtitle">
+          Quick answers + links
+          <span class="pill">Topic: {{ topic.toUpperCase() }}</span>
+        </div>
       </div>
 
       <button
@@ -32,7 +34,6 @@
         (click)="toggle()"
         aria-label="Close chat"
       >
-        <!-- close icon -->
         <svg class="close-svg" viewBox="0 0 24 24" aria-hidden="true">
           <path d="M18.3 5.7a1 1 0 0 0-1.4 0L12 10.6 7.1 5.7a1 1 0 1 0-1.4 1.4l4.9 4.9-4.9 4.9a1 1 0 1 0 1.4 1.4l4.9-4.9 4.9 4.9a1 1 0 0 0 1.4-1.4L13.4 12l4.9-4.9a1 1 0 0 0 0-1.4Z"/>
         </svg>
@@ -40,6 +41,7 @@
     </mat-card-header>
 
     <mat-card-content class="card-content">
+
       <!-- Topics -->
       <div class="topics" aria-label="Topics">
         <button
@@ -48,6 +50,7 @@
           type="button"
           *ngFor="let t of faq.getQuickOptions()"
           (click)="setTopic(t.topic)"
+          [class.active]="t.topic === topic"
         >
           {{ t.label }}
         </button>
@@ -56,7 +59,7 @@
       <div class="divider" aria-hidden="true"></div>
 
       <!-- Messages -->
-      <div class="msgs" aria-label="Chat messages">
+      <div #msgsScroller class="msgs" aria-label="Chat messages">
         <div class="msgs-inner">
           <div class="empty" *ngIf="!messages?.length">
             <div class="empty-title">Ask anything</div>
@@ -64,11 +67,16 @@
           </div>
 
           <div
-            *ngFor="let m of messages"
+            *ngFor="let m of messages; trackBy: trackMsg"
             class="msg"
             [class.user]="m.from==='user'"
             [class.bot]="m.from==='bot'"
           >
+            <div class="avatar" aria-hidden="true">
+              <span *ngIf="m.from==='bot'">AI</span>
+              <span *ngIf="m.from==='user'">You</span>
+            </div>
+
             <div class="bubble">
               <div class="text">{{ m.text }}</div>
 
@@ -84,11 +92,18 @@
                   <span class="link-arrow" aria-hidden="true">↗</span>
                 </a>
               </div>
+
+              <div class="meta">
+                <span class="dot" aria-hidden="true"></span>
+                <span class="meta-txt">{{ m.from === 'user' ? 'Sent' : 'Assistant' }}</span>
+              </div>
             </div>
           </div>
+
+          <!-- tiny spacer so last bubble never sticks to the bottom -->
+          <div class="bottom-spacer" aria-hidden="true"></div>
         </div>
       </div>
-
 
       <!-- Input -->
       <div class="input-row">
@@ -107,16 +122,13 @@
           type="button"
           class="send agent-btn"
           (click)="send()"
-          [disabled]="!input?.trim()"
+          [disabled]="!input?.trim() || isSending"
           aria-label="Send"
         >
-
-        <!-- send icon: paper plane -->
-        <svg class="agent-ico" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M2.2 11.3 21.2 3.2c.7-.3 1.5.4 1.2 1.2l-8.1 19c-.3.8-1.5.9-2 .2l-4.1-5.4-5.4-4.1c-.7-.5-.6-1.7.2-2Z"/>
-          <path d="M21.1 3.9 9.2 15.8" opacity=".35"/>
-        </svg>
-
+          <svg class="agent-ico" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M2.2 11.3 21.2 3.2c.7-.3 1.5.4 1.2 1.2l-8.1 19c-.3.8-1.5.9-2 .2l-4.1-5.4-5.4-4.1c-.7-.5-.6-1.7.2-2Z"/>
+            <path d="M21.1 3.9 9.2 15.8" opacity=".35"/>
+          </svg>
         </button>
       </div>
 

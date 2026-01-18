@@ -10,7 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 import { FaqChat, ChatTopic } from '../../services/faq-chat';
-import { LlmChatService } from '../../services/llm_chat.service';
+import { LlmChatService } from '../../services/llm-chat.service';
 
 import { ViewChild, ElementRef } from '@angular/core';
 
@@ -84,7 +84,7 @@ export class HelpChat {
     } catch (e) {
       this.messages[typingIndex] = {
         from: 'bot',
-        text: 'Error connecting to server. Make sure backend is running on http://localhost:3000',
+        text: 'Error connecting to the chat API. Check /api/chat deployment and env vars (GROQ_API_KEY).',
         links: [
           { label: 'Canada.ca Taxes', url: 'https://www.canada.ca/en/services/taxes.html' },
           { label: 'Service Canada (SIN)', url: 'https://www.canada.ca/en/employment-social-development/services/sin.html' },

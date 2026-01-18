@@ -320,3 +320,21 @@ details p{
   padding-bottom: 14px !important;
   min-height: 52px;
 }
+
+/* force fixed header */
+header.header{
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 9999 !important;
+
+  background: rgba(255,255,255,.90) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(15,23,42,.10) !important;
+}
+
+/* push content down so it doesn't go under header */
+body{
+  padding-top: 84px; /* если хедер выше/ниже — поменяешь */
+}

@@ -6,23 +6,44 @@
   (click)="toggle()"
   aria-label="Open help chat"
 >
-  ?
+  <!-- chat icon -->
+  <svg class="fab-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path
+      d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9l-5 3v-3H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm0 2v9h2v2.2L8.6 15H20V6H4Zm3 2h10v2H7V8Zm0 4h7v2H7v-2Z"
+    />
+  </svg>
 </button>
 
 <!-- Chat drawer -->
-<section class="drawer" *ngIf="isOpen" role="dialog" aria-label="Help chat">
+<section class="drawer" *ngIf="isOpen" role="dialog" aria-modal="true" aria-label="Help chat">
   <mat-card class="card">
-    <mat-card-header>
-      <mat-card-title>Help chat</mat-card-title>
-      <button mat-icon-button type="button" (click)="toggle()" aria-label="Close chat">
-        ✕
+
+    <!-- Header -->
+    <mat-card-header class="card-header">
+      <div class="header-left">
+        <mat-card-title class="card-title">Help chat</mat-card-title>
+        <div class="header-subtitle">Quick answers + links</div>
+      </div>
+
+      <button
+        mat-icon-button
+        type="button"
+        class="close-btn"
+        (click)="toggle()"
+        aria-label="Close chat"
+      >
+        <!-- close icon -->
+        <svg class="close-svg" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M18.3 5.7a1 1 0 0 0-1.4 0L12 10.6 7.1 5.7a1 1 0 1 0-1.4 1.4l4.9 4.9-4.9 4.9a1 1 0 1 0 1.4 1.4l4.9-4.9 4.9 4.9a1 1 0 0 0 1.4-1.4L13.4 12l4.9-4.9a1 1 0 0 0 0-1.4Z"/>
+        </svg>
       </button>
     </mat-card-header>
 
-    <mat-card-content>
+    <mat-card-content class="card-content">
       <!-- Topics -->
       <div class="topics" aria-label="Topics">
         <button
+          class="topic"
           mat-stroked-button
           type="button"
           *ngFor="let t of faq.getQuickOptions()"
@@ -32,32 +53,75 @@
         </button>
       </div>
 
+      <div class="divider" aria-hidden="true"></div>
+
       <!-- Messages -->
       <div class="msgs" aria-label="Chat messages">
-        <div *ngFor="let m of messages" class="msg" [class.user]="m.from==='user'" [class.bot]="m.from==='bot'">
-          <div class="bubble">
-            {{ m.text }}
-            <div class="links" *ngIf="m.links?.length">
-              <a *ngFor="let l of m.links" [href]="l.url" target="_blank" rel="noopener">
-                {{ l.label }}
-              </a>
+        <div class="msgs-inner">
+          <div class="empty" *ngIf="!messages?.length">
+            <div class="empty-title">Ask anything</div>
+            <div class="empty-text">Pick a topic above or type your question below.</div>
+          </div>
+
+          <div
+            *ngFor="let m of messages"
+            class="msg"
+            [class.user]="m.from==='user'"
+            [class.bot]="m.from==='bot'"
+          >
+            <div class="bubble">
+              <div class="text">{{ m.text }}</div>
+
+              <div class="links" *ngIf="m.links?.length">
+                <a
+                  *ngFor="let l of m.links"
+                  class="link"
+                  [href]="l.url"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  {{ l.label }}
+                  <span class="link-arrow" aria-hidden="true">↗</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
+
       <!-- Input -->
       <div class="input-row">
-        <mat-form-field appearance="outline" class="input">
+        <mat-form-field appearance="outline" class="input agent-field">
           <mat-label>Ask a question</mat-label>
-          <input matInput [(ngModel)]="input" (keydown.enter)="send()" />
+
+          <input
+            matInput
+            [(ngModel)]="input"
+            (keydown.enter)="send()"
+            placeholder="Type your question…"
+          />
         </mat-form-field>
 
-        <button mat-raised-button class="send" type="button" (click)="send()">
-          Send
+        <button
+          type="button"
+          class="send agent-btn"
+          (click)="send()"
+          [disabled]="!input?.trim()"
+          aria-label="Send"
+        >
+
+        <!-- send icon: paper plane -->
+        <svg class="agent-ico" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M2.2 11.3 21.2 3.2c.7-.3 1.5.4 1.2 1.2l-8.1 19c-.3.8-1.5.9-2 .2l-4.1-5.4-5.4-4.1c-.7-.5-.6-1.7.2-2Z"/>
+          <path d="M21.1 3.9 9.2 15.8" opacity=".35"/>
+        </svg>
+
         </button>
       </div>
+
+      <div class="hint">Enter to send</div>
+
     </mat-card-content>
   </mat-card>
 </section>
-

@@ -572,3 +572,85 @@
     transform: translateY(-4px);
   }
 }
+
+.hero-title-gradient{
+  display: inline-block;
+  font-weight: 950;
+  letter-spacing: -0.03em;
+  font-size: clamp(32px, 4.8vw, 54px);
+
+  /* BLUE-FIRST palette */
+--b1: #fff2c6;
+--b2: #ffd9e6;
+--b3: #ffc6dd;
+--b4: #ffe8a3;
+
+  /* начало = конец → нет шва */
+  background: linear-gradient(
+    90deg,
+    var(--b1) 0%,
+    var(--b2) 22%,
+    var(--b3) 42%,
+    var(--b2) 62%,
+    var(--b4) 78%,
+    var(--b2) 90%,
+    var(--b1) 100%
+  );
+
+  background-size: 200% 100%;
+  background-repeat: repeat;
+  background-position: 0% 50%;
+
+  animation: titleRiver 6s linear infinite;
+  will-change: background-position;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  padding-bottom: 0.18em;
+}
+
+@keyframes titleRiver {
+  from { background-position: 200% 50%; }
+  to   { background-position: 0% 50%; }
+}
+
+.hero-title{
+  color: rgba(15,23,42,0.92);
+  text-shadow: 0 10px 30px rgba(15,23,42,0.18);
+}
+
+.hero-subtitle{
+  color: rgba(15,23,42,0.78);
+  text-shadow: 0 8px 22px rgba(15,23,42,0.12);
+}
+.hero-title-gradient{
+  filter: drop-shadow(0 10px 22px rgba(15,23,42,0.20));
+}
+.hero-subtitle{
+  margin: 8px 0 0;
+  max-width: 62ch;
+
+  font-size: 15.5px;
+  line-height: 1.6;
+  font-weight: 700;          /* bold */
+
+  color: rgba(255,255,255,0.92);  
+
+  text-shadow:
+    0 10px 28px rgba(15,23,42,0.45),
+    0 1px 0 rgba(255,255,255,0.25);
+}
+
+.hero-eyebrow{
+  margin: 0 0 8px;
+
+  font-size: 12px;
+  font-weight: 500;          /* тонко */
+  letter-spacing: 0.12em;    /* аккуратный воздух */
+  text-transform: uppercase;
+
+  color: #6b7280;            /* neutral gray */
+}
+

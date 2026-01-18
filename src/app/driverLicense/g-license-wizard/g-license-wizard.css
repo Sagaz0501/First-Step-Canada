@@ -1,0 +1,281 @@
+/* =========================
+   G wizard — Taxes style
+========================= */
+
+:host {
+  display: block;
+  box-sizing: border-box;
+
+  --page-max: 1050px;
+  --page-pad-x: 16px;
+
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --text-soft: #64748b;
+
+  --border: rgba(15, 23, 42, 0.10);
+  --border-soft: rgba(15, 23, 42, 0.06);
+
+  --accent: #2563eb;
+  --accent-2: #60a5fa;
+  --accent-3: #a5b4fc;
+
+  --shadow-hover: 0 10px 30px rgba(15, 23, 42, 0.10);
+  --focus-ring: rgba(37, 99, 235, 0.25);
+
+  color: var(--text-main);
+}
+
+.tax-shell { background: #ffffff; }
+
+.tax-page {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding-left: var(--page-pad-x);
+  padding-right: var(--page-pad-x);
+}
+
+.page {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 28px var(--page-pad-x) 44px;
+  color: var(--text-main);
+}
+
+/* Hero */
+.hero {
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 18px;
+  background: #ffffff;
+  display: grid;
+  gap: 14px;
+}
+
+.hero__title {
+  margin: 0 0 8px;
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  font-weight: 900;
+}
+
+.hero__lead {
+  margin: 0;
+  color: var(--text-muted);
+  max-width: 80ch;
+  line-height: 1.5;
+}
+
+.hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Cards */
+.panel,
+.card,
+.notice,
+.links {
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 16px;
+  background: #ffffff;
+}
+
+.notice { margin-top: 14px; }
+
+.card__head { margin-bottom: 12px; }
+
+.card__title {
+  margin: 0 0 6px;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  font-weight: 900;
+}
+
+.card__sub {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 13px;
+}
+
+.stepper { margin-top: 14px; background: transparent; }
+
+/* Grid */
+.grid {
+  margin-top: 14px;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* Checklist */
+.checklist {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+mat-checkbox {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.03);
+  border: 1px solid var(--border-soft);
+}
+
+mat-checkbox:focus-within {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--focus-ring);
+}
+
+/* Mini summary */
+.mini-summary {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.03);
+  border: 1px solid var(--border-soft);
+}
+
+/* Actions */
+.actions {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Buttons */
+.btn-primary {
+  border-radius: 12px !important;
+  font-weight: 900 !important;
+}
+
+a.btn-primary[mat-raised-button],
+button.btn-primary[mat-raised-button] {
+  background: var(--accent) !important;
+  color: #ffffff !important;
+}
+
+.btn-ghost,
+a[mat-button],
+button[mat-button] {
+  border-radius: 12px !important;
+}
+
+/* Divider */
+mat-divider { opacity: 0.6; margin: 10px 0; }
+
+/* Typography helpers */
+.h2 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.muted {
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+/* ===== Result area polish ===== */
+.result {
+  margin-top: 10px;
+}
+
+.steps {
+  margin: 10px 0 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 10px;
+}
+
+.steps li {
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.03);
+  border: 1px solid var(--border-soft);
+}
+
+.meaning {
+  margin-top: 6px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* Bullets (for docs callout) */
+.bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.bullets li {
+  display: grid;
+  grid-template-columns: 10px 1fr;
+  gap: 10px;
+  align-items: start;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  margin-top: 7px;
+  border-radius: 999px;
+  background: rgba(37, 99, 235, 0.85);
+}
+
+.bullet-text { color: var(--text-main); line-height: 1.45; }
+
+.bullets--list { margin-top: 10px; }
+
+/* Callouts as cards */
+.callouts { margin-top: 14px; }
+.callout {
+  border: 1px solid var(--border) !important;
+  border-radius: 18px !important;
+  box-shadow: none !important;
+}
+
+/* Error */
+.error {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(220, 38, 38, 0.25);
+  background: rgba(220, 38, 38, 0.06);
+  color: #991b1b;
+}
+
+/* FAQ */
+.faq {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.03);
+  border: 1px solid var(--border-soft);
+}
+
+.faq summary {
+  cursor: pointer;
+  font-weight: 900;
+  color: var(--text-main);
+}
+
+.faq p { margin: 8px 0 0; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; }
+  .actions { justify-content: flex-start; }
+}

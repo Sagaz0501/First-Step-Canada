@@ -1,76 +1,307 @@
 <main class="page" role="main" aria-label="SIN overview">
-  <h1 class="title">{{ process.title }}</h1>
-  <p class="lead">{{ process.overview }}</p>
+  <!-- Hero -->
+  <header class="hero" aria-label="SIN overview header">
+    <div class="hero__top">
+      <h1 class="hero__title">
+        {{ process?.title || 'Social Insurance Number (SIN)' }}
+      </h1>
 
-  <!-- Key Points -->
-  <section class="panel" aria-label="Key points" *ngIf="process.keyPoints?.length">
-    <h2>Key points</h2>
-    <ul>
-      <li *ngFor="let point of process.keyPoints">{{ point }}</li>
-    </ul>
-  </section>
-
-  <!-- Key Dates (optional for SIN) -->
-  <section class="panel" aria-label="Key dates" *ngIf="process.keyDates?.length">
-    <h2>Key dates</h2>
-    <div class="kv" role="list">
-      <div class="kv-row" role="listitem" *ngFor="let d of process.keyDates">
-        <span class="kv-label">{{ d.label }}:</span>
-        <span class="kv-value">{{ d.value }}</span>
-      </div>
+      <p class="hero__lead">
+        {{
+          process?.overview ||
+          'A SIN is a 9-digit number you need to work in Canada, file taxes, and access some government benefits. Keep it private and only share it when legally required.'
+        }}
+      </p>
     </div>
-  </section>
 
-  <!-- Step preview using Stepper -->
-  <section class="panel" aria-label="Step-by-step preview" *ngIf="process.steps?.length">
-    <h2>Step-by-step preview</h2>
+    <div class="hero__cta">
+      <a
+        mat-raised-button
+        class="btn-primary"
+        [routerLink]="['/sin/steps']"
+        aria-label="Start the step-by-step SIN wizard"
+      >
+        Start step-by-step wizard
+      </a>
 
-    <mat-card>
-      <mat-card-content>
-        <mat-stepper [linear]="false">
-          <mat-step *ngFor="let s of process.steps; let i = index" [completed]="false">
-            <ng-template matStepLabel>
-              Step {{ i + 1 }} — {{ s.title }}
-            </ng-template>
+      <a mat-button class="btn-ghost" [routerLink]="['/']">
+        Back to Home
+      </a>
+    </div>
+  </header>
 
-            <p class="step-desc">{{ s.description }}</p>
+  <!-- Content grid -->
+  <div class="grid">
+    <!-- Key points (dynamic if you have them, otherwise fallback content) -->
+    <section class="card" aria-label="Key points">
+      <div class="card__head">
+        <h2 class="card__title">Key points</h2>
+        <p class="card__sub">Fast summary for newcomers.</p>
+      </div>
 
-            <div class="actions">
-              <button mat-button matStepperPrevious *ngIf="i > 0">Back</button>
-              <button mat-button matStepperNext *ngIf="i < process.steps.length - 1">Next</button>
+      <ul class="bullets" *ngIf="process?.keyPoints?.length; else sinDefaultKeyPoints">
+        <li *ngFor="let point of process.keyPoints">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="bullet-text">{{ point }}</span>
+        </li>
+      </ul>
 
-              <a
-                mat-raised-button
-                class="btn-primary"
-                [routerLink]="['/sin/steps']"
-                aria-label="Start the full SIN step-by-step wizard"
-              >
-                Start full guide
-              </a>
+      <ng-template #sinDefaultKeyPoints>
+        <ul class="bullets">
+          <li>
+            <span class="dot" aria-hidden="true"></span>
+            <span class="bullet-text">A SIN is a 9-digit ID for work, taxes, and certain benefits in Canada.</span>
+          </li>
+          <li>
+            <span class="dot" aria-hidden="true"></span>
+            <span class="bullet-text">You only need to share it with employers, banks (interest tax slips), and government programs that require it.</span>
+          </li>
+          <li>
+            <span class="dot" aria-hidden="true"></span>
+            <span class="bullet-text">Never use your SIN as a general ID and avoid sharing it by text/DM.</span>
+          </li>
+          <li>
+            <span class="dot" aria-hidden="true"></span>
+            <span class="bullet-text">If you’re an international student/worker, your SIN may start with “9” and match your permit conditions.</span>
+          </li>
+        </ul>
+      </ng-template>
+    </section>
+
+    <!-- Key dates / reminders (dynamic if present, otherwise useful reminders) -->
+    <section class="card" aria-label="Key reminders and documents">
+      <div class="card__head">
+        <h2 class="card__title">Key reminders</h2>
+        <p class="card__sub">Common documents and timing.</p>
+      </div>
+
+      <div class="date-notifications" role="list" *ngIf="process?.keyDates?.length; else sinDefaultReminders">
+        <div class="date-note" role="listitem" *ngFor="let d of process.keyDates">
+          <div class="date-glow"></div>
+          <div class="date-border-glow"></div>
+          <div class="date-title">{{ d.label }}</div>
+          <div class="date-body">{{ d.value }}</div>
+        </div>
+      </div>
+
+      <ng-template #sinDefaultReminders>
+        <div class="date-notifications" role="list">
+          <div class="date-note" role="listitem">
+            <div class="date-glow"></div>
+            <div class="date-border-glow"></div>
+            <div class="date-title">Bring original documents</div>
+            <div class="date-body">Passport + permit (study/work) or PR card. Photocopies usually won’t work.</div>
+          </div>
+
+          <div class="date-note" role="listitem">
+            <div class="date-glow"></div>
+            <div class="date-border-glow"></div>
+            <div class="date-title">SIN starts with “9”</div>
+            <div class="date-body">Temporary residents often get a “9” SIN tied to permit expiry—renew when your status changes.</div>
+          </div>
+
+          <div class="date-note" role="listitem">
+            <div class="date-glow"></div>
+            <div class="date-border-glow"></div>
+            <div class="date-title">First job checklist</div>
+            <div class="date-body">You’ll need SIN for payroll, T4, and tax filing later.</div>
+          </div>
+        </div>
+      </ng-template>
+    </section>
+
+    <!-- What is SIN + When you need it -->
+    <section class="card card--wide" aria-label="What SIN is and when you need it">
+      <div class="card__head">
+        <h2 class="card__title">What is a SIN and when do you need it?</h2>
+        <p class="card__sub">Clear use-cases so you don’t overshare it.</p>
+      </div>
+
+      <div class="two-col">
+        <div class="mini-card">
+          <h3 class="mini-title">You need it for</h3>
+          <ul class="bullets">
+            <li><span class="dot" aria-hidden="true"></span><span class="bullet-text">Working in Canada (payroll + taxes).</span></li>
+            <li><span class="dot" aria-hidden="true"></span><span class="bullet-text">Filing your tax return and receiving tax slips.</span></li>
+            <li><span class="dot" aria-hidden="true"></span><span class="bullet-text">Some government programs/benefits (when required).</span></li>
+          </ul>
+        </div>
+
+        <div class="mini-card">
+          <h3 class="mini-title">You usually DON’T need it for</h3>
+          <ul class="bullets">
+            <li><span class="dot" aria-hidden="true"></span><span class="bullet-text">Renting an apartment (ask for alternatives).</span></li>
+            <li><span class="dot" aria-hidden="true"></span><span class="bullet-text">General ID at stores or memberships.</span></li>
+            <li><span class="dot" aria-hidden="true"></span><span class="bullet-text">Job applications (share only after hiring/payroll).</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card__footer">
+        <span class="hint">Rule of thumb: share SIN only when it’s legally required.</span>
+      </div>
+    </section>
+
+    <!-- How to apply -->
+    <section class="card card--wide" aria-label="How to apply for a SIN">
+      <div class="card__head">
+        <h2 class="card__title">How to apply (simple)</h2>
+        <p class="card__sub">Online or in person — choose what’s easiest.</p>
+      </div>
+
+      <div class="steps" role="list">
+        <div class="step" role="listitem">
+          <div class="step__badge" aria-hidden="true">1</div>
+          <div class="step__body">
+            <div class="step__title">Prepare documents</div>
+            <div class="step__desc">Have your original identity/status documents ready (passport + permit/PR proof).</div>
+          </div>
+        </div>
+
+        <div class="step" role="listitem">
+          <div class="step__badge" aria-hidden="true">2</div>
+          <div class="step__body">
+            <div class="step__title">Apply online or visit Service Canada</div>
+            <div class="step__desc">Online is convenient; in-person can be faster if you have everything ready.</div>
+          </div>
+        </div>
+
+        <div class="step" role="listitem">
+          <div class="step__badge" aria-hidden="true">3</div>
+          <div class="step__body">
+            <div class="step__title">Receive confirmation</div>
+            <div class="step__desc">You’ll receive your SIN confirmation details—store them safely and don’t share casually.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card__footer">
+        <a mat-raised-button class="btn-primary" [routerLink]="['/sin/steps']">
+          Start full guide
+        </a>
+        <span class="hint">~5–10 min learning</span>
+      </div>
+    </section>
+
+    <!-- Security + mistakes -->
+    <section class="card" aria-label="Protect your SIN">
+      <div class="card__head">
+        <h2 class="card__title">Protect your SIN</h2>
+        <p class="card__sub">Common safety practices.</p>
+      </div>
+
+      <ul class="bullets">
+        <li><span class="dot" aria-hidden="true"></span><span class="bullet-text">Don’t carry the number in your wallet unless you must.</span></li>
+        <li><span class="dot" aria-hidden="true"></span><span class="bullet-text">Avoid sending it by DM/text. Use secure portals if required.</span></li>
+        <li><span class="dot" aria-hidden="true"></span><span class="bullet-text">Only give it to employers after hiring (payroll) and to official programs that require it.</span></li>
+      </ul>
+    </section>
+
+    <section class="card" aria-label="Common mistakes">
+      <div class="card__head">
+        <h2 class="card__title">Common mistakes</h2>
+        <p class="card__sub">Avoid delays and oversharing.</p>
+      </div>
+
+      <ul class="bullets">
+        <li><span class="dot" aria-hidden="true"></span><span class="bullet-text">Applying with the wrong documents or expired status/permit.</span></li>
+        <li><span class="dot" aria-hidden="true"></span><span class="bullet-text">Sharing SIN on rental applications or random forms that don’t need it.</span></li>
+        <li><span class="dot" aria-hidden="true"></span><span class="bullet-text">Not updating/renewing your SIN when your temporary status changes.</span></li>
+      </ul>
+    </section>
+
+    <!-- Step-by-step preview (dynamic, like Taxes) -->
+    <section class="card card--wide" aria-label="Step-by-step preview">
+      <div class="card__head">
+        <h2 class="card__title">Step-by-step preview</h2>
+        <p class="card__sub">What you’ll do in the wizard.</p>
+      </div>
+
+      <div class="steps" role="list" *ngIf="process?.steps?.length; else sinDefaultSteps">
+        <div class="step" role="listitem" *ngFor="let s of process.steps; let i = index">
+          <div class="step__badge" aria-hidden="true">{{ i + 1 }}</div>
+          <div class="step__body">
+            <div class="step__title">{{ s.title }}</div>
+            <div class="step__desc">{{ s.description }}</div>
+          </div>
+        </div>
+      </div>
+
+      <ng-template #sinDefaultSteps>
+        <div class="steps" role="list">
+          <div class="step" role="listitem">
+            <div class="step__badge" aria-hidden="true">1</div>
+            <div class="step__body">
+              <div class="step__title">Check eligibility</div>
+              <div class="step__desc">Confirm your status in Canada (student/work permit, PR, etc.) supports getting a SIN.</div>
             </div>
-          </mat-step>
-        </mat-stepper>
-      </mat-card-content>
-    </mat-card>
-  </section>
+          </div>
+          <div class="step" role="listitem">
+            <div class="step__badge" aria-hidden="true">2</div>
+            <div class="step__body">
+              <div class="step__title">Gather documents</div>
+              <div class="step__desc">Prepare original documents and ensure names match across documents.</div>
+            </div>
+          </div>
+          <div class="step" role="listitem">
+            <div class="step__badge" aria-hidden="true">3</div>
+            <div class="step__body">
+              <div class="step__title">Apply (online/in person)</div>
+              <div class="step__desc">Complete the application and follow instructions for verification.</div>
+            </div>
+          </div>
+          <div class="step" role="listitem">
+            <div class="step__badge" aria-hidden="true">4</div>
+            <div class="step__body">
+              <div class="step__title">Use it safely</div>
+              <div class="step__desc">Share only when required and store it securely for taxes/employment.</div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
 
-  <!-- Glossary (optional for SIN) -->
-  <section class="panel" aria-label="Glossary" *ngIf="process.glossary?.length">
-    <h2>Glossary</h2>
-
-    <div class="kv" role="list">
-      <div class="kv-row" role="listitem" *ngFor="let g of process.glossary">
-        <span class="kv-label">{{ g.term }}:</span>
-        <span class="kv-value">{{ g.meaning }}</span>
+      <div class="card__footer">
+        <a mat-raised-button class="btn-primary" [routerLink]="['/sin/steps']">
+          Start full guide
+        </a>
+        <span class="hint">Good for first-time applicants</span>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Bottom CTA -->
-  <div class="actions">
-    <a mat-raised-button class="btn-primary" [routerLink]="['/sin/steps']">
-      Start step-by-step wizard
-    </a>
-    <a mat-button [routerLink]="['/']">Back to Home</a>
+    <!-- Glossary (dynamic if you have it; fallback included) -->
+    <section class="card card--wide" aria-label="Glossary">
+      <div class="card__head">
+        <h2 class="card__title">Glossary</h2>
+        <p class="card__sub">Simple meanings for common terms.</p>
+      </div>
+
+      <div class="kv" role="list" *ngIf="process?.glossary?.length; else sinDefaultGlossary">
+        <div class="kv-row" role="listitem" *ngFor="let g of process.glossary">
+          <span class="kv-label">{{ g.term }}</span>
+          <span class="kv-value">{{ g.meaning }}</span>
+        </div>
+      </div>
+
+      <ng-template #sinDefaultGlossary>
+        <div class="kv" role="list">
+          <div class="kv-row" role="listitem">
+            <span class="kv-label">Service Canada</span>
+            <span class="kv-value">Government service that issues SINs and supports many federal services.</span>
+          </div>
+          <div class="kv-row" role="listitem">
+            <span class="kv-label">Temporary resident (SIN starts with 9)</span>
+            <span class="kv-value">A SIN tied to your permit/status. You may need to renew/update it when your status changes.</span>
+          </div>
+          <div class="kv-row" role="listitem">
+            <span class="kv-label">T4</span>
+            <span class="kv-value">Tax slip from your employer showing earnings and deductions for the year.</span>
+          </div>
+          <div class="kv-row" role="listitem">
+            <span class="kv-label">CRA</span>
+            <span class="kv-value">Canada Revenue Agency — handles taxes and many tax credits/benefits.</span>
+          </div>
+        </div>
+      </ng-template>
+    </section>
   </div>
 </main>

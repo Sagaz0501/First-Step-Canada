@@ -1,111 +1,127 @@
 <main class="page" role="main" aria-label="G1 overview">
-  <h1 class="title">{{ process.title }}</h1>
-  <p class="lead">{{ process.overview }}</p>
-
-  <!-- Key Points -->
-  <section class="panel" aria-label="Key points" *ngIf="process.keyPoints?.length">
-    <h2>Key points</h2>
-    <ul>
-      <li *ngFor="let point of process.keyPoints">{{ point }}</li>
-    </ul>
-  </section>
-
-  <!-- Key Facts: Costs & Timelines -->
-  <section class="panel" aria-label="Key facts (costs and timelines)" *ngIf="process.keyDates?.length">
-    <h2>Key facts (costs & timelines)</h2>
-    <div class="kv" role="list">
-      <div class="kv-row" role="listitem" *ngFor="let d of process.keyDates">
-        <span class="kv-label">{{ d.label }}:</span>
-        <span class="kv-value">{{ d.value }}</span>
-      </div>
+  <!-- Hero -->
+  <header class="hero" aria-label="G1 overview header">
+    <div class="hero__top">
+      <h1 class="hero__title">{{ process.title }}</h1>
+      <p class="hero__lead">{{ process.overview }}</p>
     </div>
 
-    <mat-card class="links" aria-label="Official links">
-      <mat-card-content>
-        <h2 class="h2">Official links</h2>
-        <ul>
-          <li>
-            <a
-              href="https://drivetest.ca/tests/fees/"
-              target="_blank"
-              rel="noopener"
-            >
-              DriveTest — Fees (Ontario)
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.ontario.ca/page/get-g-drivers-licence-new-drivers"
-              target="_blank"
-              rel="noopener"
-            >
-              Ontario.ca — Get a G driver’s licence (new drivers)
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://drivetest.ca/find-a-drivetest-centre/"
-              target="_blank"
-              rel="noopener"
-            >
-              DriveTest — Find a test centre
-            </a>
-          </li>
-        </ul>
-      </mat-card-content>
-    </mat-card>
-  </section>
+    <div class="hero__cta">
+      <a
+        mat-raised-button
+        class="btn-primary"
+        [routerLink]="['/g1/steps']"
+        aria-label="Start the step-by-step G1 wizard"
+      >
+        Start step-by-step wizard
+      </a>
 
-  <!-- Step preview using Stepper -->
-  <section class="panel" aria-label="Step-by-step preview" *ngIf="process.steps?.length">
-    <h2>Step-by-step preview</h2>
+      <a mat-button class="btn-ghost" [routerLink]="['/']">
+        Back to Home
+      </a>
+    </div>
+  </header>
 
-    <mat-card>
-      <mat-card-content>
-        <mat-stepper [linear]="false">
-          <mat-step *ngFor="let s of process.steps; let i = index" [completed]="false">
-            <ng-template matStepLabel>
-              Step {{ i + 1 }} — {{ s.title }}
-            </ng-template>
+  <!-- Content grid -->
+  <div class="grid">
+    <!-- Key points -->
+    <section class="card" aria-label="Key points" *ngIf="process.keyPoints?.length">
+      <div class="card__head">
+        <h2 class="card__title">Key points</h2>
+        <p class="card__sub">Quick summary for newcomers in Ontario.</p>
+      </div>
 
-            <p class="step-desc">{{ s.description }}</p>
+      <ul class="bullets">
+        <li *ngFor="let point of process.keyPoints">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="bullet-text">{{ point }}</span>
+        </li>
+      </ul>
+    </section>
 
-            <div class="actions">
-              <button mat-button matStepperPrevious *ngIf="i > 0">Back</button>
-              <button mat-button matStepperNext *ngIf="i < process.steps.length - 1">Next</button>
+    <!-- Key facts (costs & timelines) -->
+    <section class="card" aria-label="Key facts (costs and timelines)" *ngIf="process.keyDates?.length">
+      <div class="card__head">
+        <h2 class="card__title">Key facts (costs & timelines)</h2>
+        <p class="card__sub">High-level overview (always confirm official sources).</p>
+      </div>
 
-              <a
-                mat-raised-button
-                class="btn-primary"
-                [routerLink]="['/g1/steps']"
-                aria-label="Start the full G1 step-by-step wizard"
-              >
-                Start full guide
+      <div class="date-notifications" role="list">
+        <div class="date-note" role="listitem" *ngFor="let d of process.keyDates">
+          <div class="date-glow"></div>
+          <div class="date-border-glow"></div>
+
+          <div class="date-title">{{ d.label }}</div>
+          <div class="date-body">{{ d.value }}</div>
+        </div>
+      </div>
+
+      <mat-card class="links" aria-label="Official links">
+        <mat-card-content>
+          <h2 class="h2">Official links</h2>
+          <ul>
+            <li>
+              <a href="https://drivetest.ca/tests/fees/" target="_blank" rel="noopener">
+                DriveTest — Fees (Ontario)
               </a>
-            </div>
-          </mat-step>
-        </mat-stepper>
-      </mat-card-content>
-    </mat-card>
-  </section>
+            </li>
+            <li>
+              <a
+                href="https://www.ontario.ca/page/get-g-drivers-licence-new-drivers"
+                target="_blank"
+                rel="noopener"
+              >
+                Ontario.ca — Get a G driver’s licence (new drivers)
+              </a>
+            </li>
+            <li>
+              <a href="https://drivetest.ca/find-a-drivetest-centre/" target="_blank" rel="noopener">
+                DriveTest — Find a test centre
+              </a>
+            </li>
+          </ul>
+        </mat-card-content>
+      </mat-card>
+    </section>
 
-  <!-- Glossary -->
-  <section class="panel" aria-label="Glossary" *ngIf="process.glossary?.length">
-    <h2>Glossary</h2>
-
-    <div class="kv" role="list">
-      <div class="kv-row" role="listitem" *ngFor="let g of process.glossary">
-        <span class="kv-label">{{ g.term }}:</span>
-        <span class="kv-value">{{ g.meaning }}</span>
+    <!-- Step-by-step preview (like Taxes) -->
+    <section class="card card--wide" aria-label="Step-by-step preview" *ngIf="process.steps?.length">
+      <div class="card__head">
+        <h2 class="card__title">Step-by-step preview</h2>
+        <p class="card__sub">What you’ll do in the wizard.</p>
       </div>
-    </div>
-  </section>
 
-  <!-- Bottom CTA -->
-  <div class="actions">
-    <a mat-raised-button class="btn-primary" [routerLink]="['/g1/steps']">
-      Start step-by-step wizard
-    </a>
-    <a mat-button [routerLink]="['/']">Back to Home</a>
+      <div class="steps" role="list">
+        <div class="step" role="listitem" *ngFor="let s of process.steps; let i = index">
+          <div class="step__badge" aria-hidden="true">{{ i + 1 }}</div>
+          <div class="step__body">
+            <div class="step__title">{{ s.title }}</div>
+            <div class="step__desc">{{ s.description }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card__footer">
+        <a mat-raised-button class="btn-primary" [routerLink]="['/g1/steps']">
+          Start full guide
+        </a>
+        <span class="hint">~5–10 min learning</span>
+      </div>
+    </section>
+
+    <!-- Glossary -->
+    <section class="card card--wide" aria-label="Glossary" *ngIf="process.glossary?.length">
+      <div class="card__head">
+        <h2 class="card__title">Glossary</h2>
+        <p class="card__sub">Simple meanings for common terms.</p>
+      </div>
+
+      <div class="kv" role="list">
+        <div class="kv-row" role="listitem" *ngFor="let g of process.glossary">
+          <span class="kv-label">{{ g.term }}</span>
+          <span class="kv-value">{{ g.meaning }}</span>
+        </div>
+      </div>
+    </section>
   </div>
 </main>

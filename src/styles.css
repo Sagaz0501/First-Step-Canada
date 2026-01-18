@@ -269,80 +269,54 @@ details p{
   .actions{ justify-content: stretch; }
   .actions > button{ flex: 1 1 auto; }
 }
-
 /* =========================
-   Material form fields (MDC) — match your design tokens
+   Material overrides — slate tones
 ========================= */
-.mat-mdc-form-field {
-  width: 100%;
-  --mdc-outlined-text-field-container-shape: var(--radius-sm);
 
-  --mdc-outlined-text-field-container-color: rgba(255,255,255,.72);
-  --mdc-outlined-text-field-outline-color: rgba(15,23,42,.10);
-  --mdc-outlined-text-field-hover-outline-color: rgba(15,23,42,.16);
-  --mdc-outlined-text-field-focus-outline-color: var(--accent);
-
-  --mdc-outlined-text-field-label-text-color: var(--text-weak);
-  --mdc-outlined-text-field-input-text-color: var(--text);
-
-  --mat-form-field-state-layer-color: rgba(37,99,235,.06);
-}
-
-/* cleaner height/padding */
+/* form field container */
 .mat-mdc-text-field-wrapper {
-  background: rgba(255,255,255,.72);
-}
-
-/* hint area spacing */
-.mat-mdc-form-field-subscript-wrapper {
-  padding-top: 6px;
-  min-height: 18px;
-}
-.mat-mdc-form-field-hint {
-  color: var(--muted);
-  font-size: 12px;
-}
-
-/* ===== FIX: Material (MDC) form fields look awful ===== */
-.tax-page .grid .mat-mdc-form-field { width: 100%; }
-
-/* outline border */
-.tax-page .grid .mat-mdc-form-field .mdc-notched-outline__leading,
-.tax-page .grid .mat-mdc-form-field .mdc-notched-outline__notch,
-.tax-page .grid .mat-mdc-form-field .mdc-notched-outline__trailing {
-  border-color: rgba(15, 23, 42, 0.10) !important;
-}
-
-.tax-page .grid .mat-mdc-form-field:hover .mdc-notched-outline__leading,
-.tax-page .grid .mat-mdc-form-field:hover .mdc-notched-outline__notch,
-.tax-page .grid .mat-mdc-form-field:hover .mdc-notched-outline__trailing {
-  border-color: rgba(15, 23, 42, 0.18) !important;
-}
-
-.tax-page .grid .mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
-.tax-page .grid .mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
-.tax-page .grid .mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing {
-  border-color: #2563eb !important;
-}
-
-/* container */
-.tax-page .grid .mat-mdc-text-field-wrapper {
-  background: #ffffff !important;
+  background: rgba(255,255,255,.72) !important;
   border-radius: 14px !important;
 }
 
-/* input spacing/height */
-.tax-page .grid .mat-mdc-form-field-infix {
+/* outline */
+.mat-mdc-form-field .mdc-notched-outline__leading,
+.mat-mdc-form-field .mdc-notched-outline__notch,
+.mat-mdc-form-field .mdc-notched-outline__trailing {
+  border-color: rgba(15,23,42,.10) !important;
+}
+
+/* hover */
+.mat-mdc-form-field:hover .mdc-notched-outline__leading,
+.mat-mdc-form-field:hover .mdc-notched-outline__notch,
+.mat-mdc-form-field:hover .mdc-notched-outline__trailing {
+  border-color: rgba(15,23,42,.18) !important;
+}
+
+/* focus */
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing {
+  border-color: #2563eb !important;
+}
+
+/* label + input text */
+.mdc-floating-label {
+  color: #475569 !important;
+}
+.mat-mdc-input-element {
+  color: #0f172a !important;
+}
+
+/* hints */
+.mat-mdc-form-field-hint {
+  color: #64748b !important;
+  font-size: 12px;
+}
+
+/* compact height */
+.mat-mdc-form-field-infix {
   padding-top: 14px !important;
   padding-bottom: 14px !important;
   min-height: 52px;
-}
-
-/* label + hint colors */
-.tax-page .grid .mdc-floating-label {
-  color: #475569 !important;
-}
-.tax-page .grid .mat-mdc-form-field-hint {
-  color: #64748b !important;
-  font-size: 12px !important;
 }

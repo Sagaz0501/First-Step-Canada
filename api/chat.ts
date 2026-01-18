@@ -1,11 +1,19 @@
 import Groq from "groq-sdk";
 
 export default async function handler(req: any, res: any) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ error: "Method not allowed" });
-  }
-
   try {
+    if (req.method !== "POST") {
+      return res.status(405).json({ error: "Method not allowed" });
+    }
+
+    // ✅ Debug: mostrar si la env var existe (sin revelar la key)
+    const hasKey = Boolean(process.env.GROQ_API_KEY);
+    if (!hasKey) {
+      return res.status(500).json({
+        error: "Missing GROQ_API_KEY in Vercel Environment Variables",
+      });
+    }
+
     const { topic, messages } = req.body;
 
     if (!Array.isArray(messages)) {
@@ -47,11 +55,11 @@ Current topic: ${topic || "general"}
       "Sorry, I could not generate a response.";
 
     return res.status(200).json({ answer });
-  } catch (error: any) {
-    console.error("API ERROR:", error);
+  } catch (err: any) {
+    console.error("FUNCTION ERROR:", err);
     return res.status(500).json({
-      error: "LLM error",
-      details: String(error),
+      error: "Function crashed",
+      details: String(err?.message || err),
     });
   }
 }

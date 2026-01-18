@@ -1,43 +1,53 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global styles + design tokens */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-/* =========================
-   Global tokens (safe)
-/* styles.css */
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+
 :root {
-  --bg-main: #ffffff;
-  --bg-accent: #f1f5f9;
+  /* Core */
+  --bg: #ffffff;
+  --surface: rgba(255, 255, 255, 0.72);
+  --surface-2: rgba(255, 255, 255, 0.55);
+
+  --text: #0f172a;
+  --text-weak: #475569;
+  --muted: #64748b;
+
+  --border: rgba(15, 23, 42, 0.12);
+
+  /* Accents */
   --accent: #2563eb;
-  --accent-soft: #e0e7ff;
-  --text-main: #0f172a;
-  --text-muted: #475569;
-  --border: #e2e8f0;
+  --accent-soft: rgba(37, 99, 235, 0.14);
+
+  /* Radii + shadow */
+  --radius: 18px;
+  --radius-sm: 14px;
+  --shadow: 0 18px 50px rgba(15, 23, 42, 0.10);
 }
 
-*{ box-sizing: border-box; }
-html, body{ height: 100%; }
-body{
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
   margin: 0;
+  min-height: 100%;
+  background: #ffffff;
   color: var(--text);
-  background:
-    radial-gradient(900px 600px at 15% 10%, rgba(124,58,237,.28), transparent 60%),
-    radial-gradient(900px 600px at 90% 0%, rgba(34,197,94,.18), transparent 55%),
-    radial-gradient(1200px 900px at 50% 120%, rgba(59,130,246,.12), transparent 60%),
-    var(--bg);
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   line-height: 1.5;
 }
 
+
 /* =========================
    Accessibility: skip link
+========================= */
 .skip-link{
   position: absolute;
   left: 12px;
   top: 12px;
   padding: 10px 12px;
   border-radius: 10px;
-  background: rgba(255,255,255,.12);
+  background: rgba(255,255,255,.55);
   color: var(--text);
   border: 1px solid var(--border);
   transform: translateY(-140%);
@@ -47,21 +57,22 @@ body{
 }
 .skip-link:focus{
   transform: translateY(0);
-  outline: 3px solid rgba(34,197,94,.35);
+  outline: 3px solid rgba(37,99,235,.25);
   outline-offset: 2px;
 }
 
 /* =========================
    Header
+========================= */
 .site-header{
   padding: 44px 16px 24px;
 }
 .header-inner{
   max-width: 980px;
   margin: 0 auto;
-  padding: 22px 22px;
+  padding: 22px;
   border-radius: calc(var(--radius) + 6px);
-  background: linear-gradient(135deg, rgba(255,255,255,.09), rgba(255,255,255,.04));
+  background: linear-gradient(135deg, var(--surface), var(--surface-2));
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
   backdrop-filter: blur(10px);
@@ -80,15 +91,14 @@ body{
 
 /* =========================
    Page layout
+========================= */
 .page{
   max-width: 980px;
   margin: 0 auto;
   padding: 18px 16px 40px;
 }
 
-.section{
-  margin-top: 18px;
-}
+.section{ margin-top: 18px; }
 .section-title{
   margin: 0 0 12px;
   font-size: 18px;
@@ -98,6 +108,7 @@ body{
 
 /* =========================
    Cards (Material wrapper)
+========================= */
 .card.mat-mdc-card{
   border-radius: var(--radius);
   background: var(--surface);
@@ -105,51 +116,44 @@ body{
   box-shadow: var(--shadow);
   backdrop-filter: blur(10px);
 }
-.card .mat-mdc-card-content{
-  padding: 18px;
-}
+.card .mat-mdc-card-content{ padding: 18px; }
 
 /* =========================
    Stepper
+========================= */
 .stepper.mat-stepper-horizontal,
 .stepper.mat-stepper-vertical{
   background: transparent;
 }
 
-/* Make step headers readable on dark */
-.stepper .mat-step-header{
-  border-radius: 14px;
-}
-.stepper .mat-step-header:hover{
-  background: rgba(255,255,255,.06);
-}
-.stepper .mat-step-label{
-  color: var(--text);
-}
+.stepper .mat-step-header{ border-radius: 14px; }
+.stepper .mat-step-header:hover{ background: rgba(255,255,255,.35); }
+
+.stepper .mat-step-label,
 .stepper .mat-step-text-label{
   color: var(--text);
 }
+
 .stepper .mat-step-icon{
-  background: rgba(255,255,255,.14);
+  background: rgba(15,23,42,.08);
   color: var(--text);
 }
 .stepper .mat-step-icon-selected{
-  background: rgba(34,197,94,.22);
+  background: rgba(37,99,235,.18);
 }
 
 /* =========================
    Form fields spacing
+========================= */
 .hint{
   margin: 0 0 14px;
   color: var(--text-weak);
 }
-
 .field{
   width: 100%;
   display: block;
   margin: 12px 0;
 }
-
 .checks{
   display: grid;
   gap: 10px;
@@ -158,6 +162,7 @@ body{
 
 /* =========================
    Actions row
+========================= */
 .actions{
   display: flex;
   gap: 10px;
@@ -169,37 +174,25 @@ body{
 
 /* =========================
    Result box
+========================= */
 .result{
   margin-top: 10px;
-  padding: 14px 14px;
+  padding: 14px;
   border-radius: var(--radius);
   border: 1px solid var(--border);
-  background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+  background: linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.35));
 }
+.result-title{ margin: 0 0 10px; font-size: 16px; }
+.steps{ margin: 0; padding-left: 18px; }
+.steps li{ margin: 10px 0; }
+.step-text{ margin-top: 4px; color: var(--text-weak); }
 
-.result-title{
-  margin: 0 0 10px;
-  font-size: 16px;
-}
-.steps{
-  margin: 0;
-  padding-left: 18px;
-}
-.steps li{
-  margin: 10px 0;
-}
-.step-text{
-  margin-top: 4px;
-  color: var(--text-weak);
-}
-
-/* Note */
 .note{
   margin-top: 12px;
   padding: 10px 12px;
   border-radius: 14px;
-  border: 1px solid rgba(124,58,237,.22);
-  background: rgba(124,58,237,.12);
+  border: 1px solid rgba(37,99,235,.22);
+  background: rgba(37,99,235,.10);
   color: var(--text);
 }
 
@@ -211,7 +204,7 @@ body{
 }
 .callout.mat-mdc-card{
   border-radius: 16px;
-  background: rgba(255,255,255,.06);
+  background: rgba(255,255,255,.45);
   border: 1px solid var(--border);
   box-shadow: none;
 }
@@ -224,29 +217,28 @@ body{
   padding: 10px 14px 14px;
   color: var(--text-weak);
 }
-.callout ul{
-  margin: 8px 0 0;
-  padding-left: 18px;
-}
+.callout ul{ margin: 8px 0 0; padding-left: 18px; }
 
 /* =========================
    Error text
+========================= */
 .error{
   margin: 12px 0 0;
   padding: 10px 12px;
   border-radius: 14px;
-  border: 1px solid rgba(239,68,68,.35);
-  background: rgba(239,68,68,.14);
-  color: rgba(255,255,255,.92);
+  border: 1px solid rgba(239,68,68,.28);
+  background: rgba(239,68,68,.10);
+  color: var(--text);
 }
 
 /* =========================
    FAQ details
+========================= */
 details{
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   padding: 10px 12px;
-  background: rgba(255,255,255,.04);
+  background: rgba(255,255,255,.40);
 }
 details + details{ margin-top: 10px; }
 summary{
@@ -261,6 +253,7 @@ details p{
 
 /* =========================
    Footer
+========================= */
 .site-footer{
   padding: 28px 16px 40px;
   color: var(--muted);
@@ -269,6 +262,7 @@ details p{
 
 /* =========================
    Responsive
+========================= */
 @media (max-width: 640px){
   .header-inner{ padding: 18px; }
   .card .mat-mdc-card-content{ padding: 14px; }
@@ -276,4 +270,79 @@ details p{
   .actions > button{ flex: 1 1 auto; }
 }
 
-*/
+/* =========================
+   Material form fields (MDC) — match your design tokens
+========================= */
+.mat-mdc-form-field {
+  width: 100%;
+  --mdc-outlined-text-field-container-shape: var(--radius-sm);
+
+  --mdc-outlined-text-field-container-color: rgba(255,255,255,.72);
+  --mdc-outlined-text-field-outline-color: rgba(15,23,42,.10);
+  --mdc-outlined-text-field-hover-outline-color: rgba(15,23,42,.16);
+  --mdc-outlined-text-field-focus-outline-color: var(--accent);
+
+  --mdc-outlined-text-field-label-text-color: var(--text-weak);
+  --mdc-outlined-text-field-input-text-color: var(--text);
+
+  --mat-form-field-state-layer-color: rgba(37,99,235,.06);
+}
+
+/* cleaner height/padding */
+.mat-mdc-text-field-wrapper {
+  background: rgba(255,255,255,.72);
+}
+
+/* hint area spacing */
+.mat-mdc-form-field-subscript-wrapper {
+  padding-top: 6px;
+  min-height: 18px;
+}
+.mat-mdc-form-field-hint {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* ===== FIX: Material (MDC) form fields look awful ===== */
+.tax-page .grid .mat-mdc-form-field { width: 100%; }
+
+/* outline border */
+.tax-page .grid .mat-mdc-form-field .mdc-notched-outline__leading,
+.tax-page .grid .mat-mdc-form-field .mdc-notched-outline__notch,
+.tax-page .grid .mat-mdc-form-field .mdc-notched-outline__trailing {
+  border-color: rgba(15, 23, 42, 0.10) !important;
+}
+
+.tax-page .grid .mat-mdc-form-field:hover .mdc-notched-outline__leading,
+.tax-page .grid .mat-mdc-form-field:hover .mdc-notched-outline__notch,
+.tax-page .grid .mat-mdc-form-field:hover .mdc-notched-outline__trailing {
+  border-color: rgba(15, 23, 42, 0.18) !important;
+}
+
+.tax-page .grid .mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
+.tax-page .grid .mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
+.tax-page .grid .mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing {
+  border-color: #2563eb !important;
+}
+
+/* container */
+.tax-page .grid .mat-mdc-text-field-wrapper {
+  background: #ffffff !important;
+  border-radius: 14px !important;
+}
+
+/* input spacing/height */
+.tax-page .grid .mat-mdc-form-field-infix {
+  padding-top: 14px !important;
+  padding-bottom: 14px !important;
+  min-height: 52px;
+}
+
+/* label + hint colors */
+.tax-page .grid .mdc-floating-label {
+  color: #475569 !important;
+}
+.tax-page .grid .mat-mdc-form-field-hint {
+  color: #64748b !important;
+  font-size: 12px !important;
+}

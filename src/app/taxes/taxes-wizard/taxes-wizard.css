@@ -1,166 +1,334 @@
+/* =========================
+   Taxes wizard — tones like your reference (slate/blue)
+   + fix glossary width alignment
+   + keep glossary cards style (left gradient line)
+========================= */
+
 :host {
   display: block;
   box-sizing: border-box;
 
-  /* TOKENS (your new palette) */
-  --bg-main: #ffffff;
-  --bg-accent: #f1f5f9;
-
-  --accent: #2563eb;
-  --accent-soft: #e0e7ff;
+  /* match your reference tones */
+  --page-max: 1050px;
+  --page-pad-x: 16px;
 
   --text-main: #0f172a;
   --text-muted: #475569;
+  --text-soft: #64748b;
 
-  --border: #e2e8f0;
+  --border: rgba(15, 23, 42, 0.10);
+  --border-soft: rgba(15, 23, 42, 0.06);
+
+  --accent: #2563eb;
+  --accent-2: #60a5fa;
+  --accent-3: #a5b4fc;
+
+  --shadow-hover: 0 10px 30px rgba(15, 23, 42, 0.10);
   --focus-ring: rgba(37, 99, 235, 0.25);
-}
 
-.page {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 22px 20px;
   color: var(--text-main);
 }
 
-.top {
-  margin-bottom: 14px;
+/* Shell background can stay simple */
+.tax-shell {
+  background: #ffffff;
 }
 
-.title {
-  margin: 0 0 6px 0;
-  font-size: 24px;
+/* ===== width alignment FIX =====
+   glossary is outside .page, so we give it the same "page container" rules */
+.glossary-panel,
+.tax-page {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding-left: var(--page-pad-x);
+  padding-right: var(--page-pad-x);
+}
+
+/* Page */
+.page {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 28px var(--page-pad-x) 44px;
+  color: var(--text-main);
+}
+
+/* ===== Hero ===== */
+.hero {
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 18px;
+  background: #ffffff;
+  display: grid;
+  gap: 14px;
+}
+
+.hero__title {
+  margin: 0 0 8px;
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
   font-weight: 900;
 }
 
-.lead {
+.hero__lead {
   margin: 0;
   color: var(--text-muted);
+  max-width: 80ch;
   line-height: 1.5;
 }
 
-.notice {
-  border-left: 6px solid var(--accent);
-  margin: 12px 0 18px 0;
-}
-
-.stepper {
-  background: transparent;
-}
-
-.step-text {
-  color: var(--text-muted);
-  line-height: 1.5;
-  margin: 6px 0 12px 0;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(220px, 1fr));
-  gap: 14px;
-  margin: 10px 0 14px 0;
-}
-
-.checklist {
-  display: grid;
-  gap: 10px;
-  margin: 10px 0 14px 0;
-}
-
-.actions {
+.hero__cta {
   display: flex;
-  gap: 10px;
   flex-wrap: wrap;
-  margin-top: 14px;
+  gap: 10px;
   align-items: center;
 }
 
-.btn-primary {
-  background: var(--accent) !important;
-  color: var(--bg-main) !important;
+/* ===== Cards ===== */
+.panel {
+  /* keep it visually same as cards */
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: #ffffff;
+  margin: 0 auto 16px;
 }
 
-.mini-summary {
-  margin-top: 12px;
-  color: var(--text-muted);
-}
-
+.card,
+.notice,
 .estimate,
-.links,
-.final {
-  margin-top: 12px;
-  border-top: 4px solid var(--accent);
+.links {
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 16px;
+  background: #ffffff;
 }
 
-.estimate-lines {
-  display: grid;
-  gap: 6px;
-  margin-bottom: 10px;
+.card__head {
+  margin-bottom: 12px;
 }
 
-.result {
-  margin-top: 8px;
-}
-
-.h2 {
-  margin: 0 0 8px 0;
+.card__title {
+  margin: 0 0 6px;
   font-size: 16px;
+  letter-spacing: -0.01em;
   font-weight: 900;
 }
 
-.muted {
-  color: var(--text-muted);
-  line-height: 1.4;
-  margin-top: 10px;
+.card__sub {
+  margin: 0;
+  color: var(--text-soft);
   font-size: 13px;
 }
 
-/* Accessibility focus */
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-mat-select:focus-visible {
-  outline: 3px solid var(--accent);
-  outline-offset: 3px;
-  box-shadow: 0 0 0 6px var(--focus-ring);
+/* Notice */
+.notice {
+  margin-top: 14px;
 }
 
-/* Glossary / panel block */
-.panel {
-  margin-top: 18px;
-  background: var(--bg-accent);
-  border-left: 6px solid var(--accent);
-  border-radius: 10px;
-  padding: 16px;
-  border: 1px solid var(--border);
+/* ===== Grid ===== */
+.grid {
+  margin-top: 14px;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 1fr 1fr;
 }
+
+.card--wide {
+  grid-column: 1 / -1;
+}
+
+/* ===== Checklist ===== */
+.checklist {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+mat-checkbox {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.03);
+  border: 1px solid var(--border-soft);
+}
+
+mat-checkbox:focus-within {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--focus-ring);
+}
+
+/* Mini summary / estimate lines */
+.mini-summary,
+.estimate-lines > div {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.03);
+  border: 1px solid var(--border-soft);
+}
+
+.estimate-lines .result {
+  background: rgba(37, 99, 235, 0.08);
+  border-color: rgba(37, 99, 235, 0.20);
+}
+
+/* ===== Stepper ===== */
+.stepper {
+  margin-top: 14px;
+  background: transparent;
+}
+
+/* ===== Actions ===== */
+.actions {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ===== Buttons ===== */
+.btn-primary {
+  border-radius: 12px !important;
+  font-weight: 900 !important;
+}
+
+a.btn-primary[mat-raised-button],
+button.btn-primary[mat-raised-button] {
+  background: var(--accent) !important;
+  color: #ffffff !important;
+}
+
+.btn-ghost,
+a[mat-button],
+button[mat-button] {
+  border-radius: 12px !important;
+}
+
+/* Links card */
+.links a {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: none;
+}
+.links a:hover {
+  text-decoration: underline;
+}
+
+/* Divider */
+mat-divider {
+  opacity: 0.6;
+  margin: 10px 0;
+}
+
+/* =========================
+   Glossary cards — keep SAME notification style (as you asked)
+========================= */
 
 .glossary {
   display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 12px;
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
-.glossary-item {
-  background: var(--bg-main);
-  border-radius: 10px;
-  padding: 12px;
-  border: 1px solid var(--border);
-}
-
-.term {
-  font-weight: 900;
-  margin-bottom: 6px;
-  color: var(--text-main);
-}
-
-.meaning {
-  color: var(--text-muted);
-  line-height: 1.45;
-}
-
-@media (max-width: 900px) {
-  .grid {
+@media (max-width: 760px) {
+  .glossary {
     grid-template-columns: 1fr;
   }
 }
+
+.date-notifications {
+  display: grid;
+  gap: 12px;
+}
+
+.date-note {
+  position: relative;
+  isolation: isolate;
+  padding: 14px 16px 14px 22px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.date-note::after {
+  content: "";
+  position: absolute;
+  inset: 10px auto 10px 8px;
+  width: 4px;
+  border-radius: 4px;
+  background: linear-gradient(to bottom, var(--accent), var(--accent-2), var(--accent-3));
+  transition: transform 250ms ease;
+  z-index: 3;
+}
+
+.date-note:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-hover);
+}
+
+.date-note:hover::after {
+  transform: translateX(1px);
+}
+
+/* glows */
+.date-glow,
+.date-border-glow {
+  position: absolute;
+  width: 18rem;
+  height: 18rem;
+  left: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle closest-side, rgba(37, 99, 235, 0.35), transparent);
+  opacity: 0;
+  transition: opacity 250ms ease;
+  pointer-events: none;
+}
+
+.date-glow { z-index: 2; }
+.date-border-glow { z-index: 0; }
+
+.date-note:hover .date-glow { opacity: 0.12; }
+.date-note:hover .date-border-glow { opacity: 0.08; }
+
+.date-title {
+  position: relative;
+  z-index: 4;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  color: var(--text-main);
+  margin-bottom: 4px;
+  transition: transform 200ms ease;
+}
+
+.date-body {
+  position: relative;
+  z-index: 4;
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.5;
+  transition: transform 200ms ease;
+}
+
+.date-note:hover .date-title { transform: translateX(2px); }
+.date-note:hover .date-body { transform: translateX(4px); }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; }
+  .card--wide { grid-column: auto; }
+}
+@media (max-width: 640px) {
+  .date-note { padding: 12px 14px 12px 20px; }
+}
+
+.glossary-panel {
+  margin-top: 24px; 
+}
+

@@ -1,228 +1,300 @@
-<!-- Simple glossary (keeps the wizard easy + improves accessibility) -->
-<section class="panel" aria-label="Glossary">
-  <h2 class="h2">Quick glossary (simple explanations)</h2>
-  <p class="muted">
-    These terms appear in tax forms and pay slips. This is a simple explanation for newcomers.
-  </p>
+<!-- Taxes wizard page (overview + wizard) -->
+<div class="tax-shell">
 
-  <div class="glossary" role="list">
-    <div class="glossary-item" role="listitem">
-      <div class="term">Tax withheld</div>
-      <div class="meaning">
-        Money your employer already took from your paycheque and sent to the CRA. It counts toward what you owe.
-        If too much was withheld, you may get a refund.
-      </div>
-    </div>
-
-    <div class="glossary-item" role="listitem">
-      <div class="term">RRSP contributions</div>
-      <div class="meaning">
-        Money you put into an RRSP (Registered Retirement Savings Plan). In many cases, RRSP contributions can reduce
-        your taxable income (rules apply).
-      </div>
-    </div>
-
-    <div class="glossary-item" role="listitem">
-      <div class="term">Tuition (T2202)</div>
-      <div class="meaning">
-        Tuition paid to a school. Students may receive a tuition slip (often called T2202). Tuition amounts can help
-        reduce taxes in some situations.
-      </div>
-    </div>
-
-    <div class="glossary-item" role="listitem">
-      <div class="term">Moving expenses</div>
-      <div class="meaning">
-        Costs related to moving for work or school (eligibility rules apply). Some people can claim part of these expenses,
-        depending on the reason for the move.
-      </div>
-    </div>
-  </div>
-</section>
-
-<main class="page" role="main" aria-label="Taxes step-by-step wizard">
-  <div class="top">
-    <h1 class="title">Taxes step-by-step</h1>
-    <p class="lead">
-      This guided wizard helps you understand the basics of filing taxes in Canada.
-      It includes a simple learning estimate (not an official tax calculation).
+  <!-- ===== Glossary ===== -->
+  <section class="panel glossary-panel" aria-label="Glossary">
+    <h2 class="h2">Quick glossary (simple explanations)</h2>
+    <p class="muted">
+      These terms appear in tax forms and pay slips. This is a simple explanation for newcomers.
     </p>
-  </div>
 
-  <mat-card class="notice" role="note" aria-label="Important note">
-    <mat-card-content>
-      <strong>Important:</strong> Tax rules can be complex and depend on your situation.
-      For real filing, use CRA-certified software or a tax clinic.
-    </mat-card-content>
-  </mat-card>
-
-  <mat-stepper [linear]="true" class="stepper">
-
-    <!-- STEP 1 -->
-    <mat-step [stepControl]="step1">
-      <ng-template matStepLabel>Get ready</ng-template>
-
-      <!-- ✅ formGroup wrapper -->
-      <div [formGroup]="step1" class="checklist" role="group" aria-label="Preparation checklist">
-        <mat-checkbox formControlName="hasSin">I have my SIN (Social Insurance Number)</mat-checkbox>
-        <mat-checkbox formControlName="hasAddress">I have my current Canadian address</mat-checkbox>
-        <mat-checkbox formControlName="hasT4orIncome">I have my income info (example: T4 slip)</mat-checkbox>
-        <mat-checkbox formControlName="understandsDeadline">I understand there is a yearly deadline (typically April)</mat-checkbox>
+    <!-- uses your notification card style -->
+    <div class="glossary date-notifications" role="list">
+      <div class="glossary-item date-note" role="listitem">
+        <span class="date-glow" aria-hidden="true"></span>
+        <span class="date-border-glow" aria-hidden="true"></span>
+        <div class="term date-title">Tax withheld</div>
+        <div class="meaning date-body">
+          Money your employer already took from your paycheque and sent to the CRA. It counts toward what you owe.
+          If too much was withheld, you may get a refund.
+        </div>
       </div>
 
-      <div class="actions">
-        <button mat-raised-button class="btn-primary" matStepperNext>Continue</button>
-        <a mat-button [routerLink]="['/taxes']">Back to overview</a>
-      </div>
-    </mat-step>
-
-    <!-- STEP 2 -->
-    <mat-step [stepControl]="step2">
-      <ng-template matStepLabel>Income (learning)</ng-template>
-
-      <!-- ✅ formGroup wrapper -->
-      <div [formGroup]="step2" class="grid">
-        <mat-form-field appearance="outline">
-          <mat-label>Tax year</mat-label>
-          <mat-select formControlName="taxYear">
-            <mat-option value="2025">2025</mat-option>
-            <mat-option value="2024">2024</mat-option>
-          </mat-select>
-          <mat-hint>Usually you file for the previous year.</mat-hint>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Employment income (from T4)</mat-label>
-          <input matInput type="number" min="0" formControlName="employmentIncome" />
-          <mat-hint>Example: 32000</mat-hint>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Other income (optional)</mat-label>
-          <input matInput type="number" min="0" formControlName="otherIncome" />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Tax withheld</mat-label>
-          <input matInput type="number" min="0" formControlName="taxWithheld" />
-          <mat-hint>Often shown on a T4.</mat-hint>
-        </mat-form-field>
+      <div class="glossary-item date-note" role="listitem">
+        <span class="date-glow" aria-hidden="true"></span>
+        <span class="date-border-glow" aria-hidden="true"></span>
+        <div class="term date-title">RRSP contributions</div>
+        <div class="meaning date-body">
+          Money you put into an RRSP (Registered Retirement Savings Plan). In many cases, RRSP contributions can reduce
+          your taxable income (rules apply).
+        </div>
       </div>
 
-      <mat-divider></mat-divider>
-
-      <div class="mini-summary" aria-label="Income summary">
-        <div><strong>Total income (demo):</strong> ${{ totalIncome }}</div>
+      <div class="glossary-item date-note" role="listitem">
+        <span class="date-glow" aria-hidden="true"></span>
+        <span class="date-border-glow" aria-hidden="true"></span>
+        <div class="term date-title">Tuition (T2202)</div>
+        <div class="meaning date-body">
+          Tuition paid to a school. Students may receive a tuition slip (often called T2202). Tuition amounts can help
+          reduce taxes in some situations.
+        </div>
       </div>
 
-      <div class="actions">
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-raised-button class="btn-primary" matStepperNext>Continue</button>
+      <div class="glossary-item date-note" role="listitem">
+        <span class="date-glow" aria-hidden="true"></span>
+        <span class="date-border-glow" aria-hidden="true"></span>
+        <div class="term date-title">Moving expenses</div>
+        <div class="meaning date-body">
+          Costs related to moving for work or school (eligibility rules apply). Some people can claim part of these expenses,
+          depending on the reason for the move.
+        </div>
       </div>
-    </mat-step>
+    </div>
+  </section>
 
-    <!-- STEP 3 -->
-    <mat-step [stepControl]="step3">
-      <ng-template matStepLabel>Deductions (learning)</ng-template>
-
-      <!-- ✅ formGroup wrapper -->
-      <div [formGroup]="step3" class="grid">
-        <mat-form-field appearance="outline">
-          <mat-label>RRSP contributions (optional)</mat-label>
-          <input matInput type="number" min="0" formControlName="rrsp" />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Tuition (optional)</mat-label>
-          <input matInput type="number" min="0" formControlName="tuition" />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Moving expenses (optional)</mat-label>
-          <input matInput type="number" min="0" formControlName="movingExpenses" />
-        </mat-form-field>
+  <!-- ===== Main content ===== -->
+  <main class="page tax-page" role="main" aria-label="Taxes step-by-step wizard">
+    <!-- top -->
+    <div class="top hero" aria-label="Taxes hero">
+      <div>
+        <h1 class="hero__title">Taxes step-by-step</h1>
+        <p class="hero__lead">
+          This guided wizard helps you understand the basics of filing taxes in Canada.
+          It includes a simple learning estimate (not an official tax calculation).
+        </p>
       </div>
 
-      <mat-card class="estimate" aria-label="Estimate box">
-        <mat-card-content>
-          <div aria-live="polite" class="estimate-lines">
-            <div><strong>Taxable income estimate:</strong> ${{ taxableIncomeEstimate }}</div>
-            <div><strong>Demo tax rate used:</strong> {{ (estimatedTaxRate * 100) | number:'1.0-0' }}%</div>
-            <div><strong>Estimated tax payable:</strong> ${{ estimatedTaxPayable }}</div>
-            <div><strong>Tax withheld:</strong> ${{ withheld }}</div>
-            <div class="result"><strong>{{ refundLabel }}</strong></div>
+      <div class="hero__cta">
+        <a mat-raised-button class="btn-primary" [routerLink]="['/taxes']">Back to overview</a>
+        <a mat-button class="btn-ghost" [routerLink]="['/']">Home</a>
+      </div>
+    </div>
+
+    <!-- Important note -->
+    <mat-card class="notice card-glass" role="note" aria-label="Important note">
+      <mat-card-content>
+        <strong>Important:</strong> Tax rules can be complex and depend on your situation.
+        For real filing, use CRA-certified software or a tax clinic.
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Wizard -->
+    <mat-stepper [linear]="true" class="stepper" aria-label="Tax wizard stepper">
+
+      <!-- STEP 1 -->
+      <mat-step [stepControl]="step1">
+        <ng-template matStepLabel>Get ready</ng-template>
+
+        <div class="card card--wide" aria-label="Preparation checklist card">
+          <div class="card__head">
+            <h3 class="card__title">Preparation checklist</h3>
+            <p class="card__sub">Check these items before you start.</p>
           </div>
 
-          <p class="muted">
-            Learning estimate only. Real tax calculations use brackets, credits, and rules.
-          </p>
-        </mat-card-content>
-      </mat-card>
+          <!-- ✅ formGroup wrapper -->
+          <div [formGroup]="step1" class="checklist" role="group" aria-label="Preparation checklist">
+            <mat-checkbox formControlName="hasSin">I have my SIN (Social Insurance Number)</mat-checkbox>
+            <mat-checkbox formControlName="hasAddress">I have my current Canadian address</mat-checkbox>
+            <mat-checkbox formControlName="hasT4orIncome">I have my income info (example: T4 slip)</mat-checkbox>
+            <mat-checkbox formControlName="understandsDeadline">I understand there is a yearly deadline (typically April)</mat-checkbox>
+          </div>
 
-      <div class="actions">
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-raised-button class="btn-primary" matStepperNext>Continue</button>
-      </div>
-    </mat-step>
+          <div class="actions">
+            <button mat-raised-button class="btn-primary" matStepperNext>Continue</button>
+            <a mat-button class="btn-ghost" [routerLink]="['/taxes']">Back to overview</a>
+          </div>
+        </div>
+      </mat-step>
 
-    <!-- STEP 4 -->
-    <mat-step [stepControl]="step4">
-      <ng-template matStepLabel>Choose a filing method</ng-template>
+      <!-- STEP 2 -->
+      <mat-step [stepControl]="step2">
+        <ng-template matStepLabel>Income (learning)</ng-template>
 
-      <!-- ✅ formGroup wrapper -->
-      <div [formGroup]="step4" class="grid">
-        <mat-form-field appearance="outline">
-          <mat-label>Filing method</mat-label>
-          <mat-select formControlName="filingMethod">
-            <mat-option value="software">CRA-certified tax software (recommended)</mat-option>
-            <mat-option value="clinic">Free tax clinic (if eligible)</mat-option>
-            <mat-option value="accountant">Accountant / tax professional</mat-option>
-          </mat-select>
-        </mat-form-field>
+        <div class="card card--wide" aria-label="Income card">
+          <div class="card__head">
+            <h3 class="card__title">Income (learning)</h3>
+            <p class="card__sub">Enter simple numbers to understand the idea. Not an official calculator.</p>
+          </div>
 
-        <mat-form-field appearance="outline">
-          <mat-label>CRA account</mat-label>
-          <mat-select formControlName="craAccount">
-            <mat-option value="no">I don’t have a CRA account yet</mat-option>
-            <mat-option value="yes">I already have a CRA account</mat-option>
-          </mat-select>
-          <mat-hint>A CRA account helps you check your results later.</mat-hint>
-        </mat-form-field>
-      </div>
+          <!-- ✅ formGroup wrapper -->
+          <div [formGroup]="step2" class="grid" aria-label="Income inputs">
+            <mat-form-field appearance="outline">
+              <mat-label>Tax year</mat-label>
+              <mat-select formControlName="taxYear">
+                <mat-option value="2025">2025</mat-option>
+                <mat-option value="2024">2024</mat-option>
+              </mat-select>
+              <mat-hint>Usually you file for the previous year.</mat-hint>
+            </mat-form-field>
 
-      <mat-card class="links" aria-label="Official links">
-        <mat-card-content>
-          <h2 class="h2">Official links (CRA)</h2>
-          <ul>
-            <li><a href="https://www.canada.ca/en/services/taxes/income-tax/personal-income-tax.html" target="_blank" rel="noopener">Personal income tax — Canada.ca</a></li>
-            <li><a href="https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/netfile-overview.html" target="_blank" rel="noopener">NETFILE overview — CRA</a></li>
-            <li><a href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/community-volunteer-income-tax-program.html" target="_blank" rel="noopener">Free tax clinics (CVITP)</a></li>
-          </ul>
-        </mat-card-content>
-      </mat-card>
+            <mat-form-field appearance="outline">
+              <mat-label>Employment income (from T4)</mat-label>
+              <input matInput type="number" min="0" formControlName="employmentIncome" />
+              <mat-hint>Example: 32000</mat-hint>
+            </mat-form-field>
 
-      <div class="actions">
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-raised-button class="btn-primary" matStepperNext>Continue</button>
-      </div>
-    </mat-step>
+            <mat-form-field appearance="outline">
+              <mat-label>Other income (optional)</mat-label>
+              <input matInput type="number" min="0" formControlName="otherIncome" />
+            </mat-form-field>
 
-    <!-- STEP 5 -->
-    <mat-step [stepControl]="step5">
-      <ng-template matStepLabel>Review & finish</ng-template>
+            <mat-form-field appearance="outline">
+              <mat-label>Tax withheld</mat-label>
+              <input matInput type="number" min="0" formControlName="taxWithheld" />
+              <mat-hint>Often shown on a T4.</mat-hint>
+            </mat-form-field>
+          </div>
 
-      <!-- ✅ formGroup wrapper -->
-      <div [formGroup]="step5" class="checklist" role="group" aria-label="Final checklist">
-        <mat-checkbox formControlName="reviewedInfo">I reviewed my info (names, SIN, income values)</mat-checkbox>
-        <mat-checkbox formControlName="savedCopy">I will save a copy of my tax return</mat-checkbox>
-      </div>
+          <mat-divider></mat-divider>
 
-      <div class="actions">
-        <button mat-button matStepperPrevious>Back</button>
-        <a mat-raised-button class="btn-primary" [routerLink]="['/taxes']">Finish</a>
-        <a mat-button [routerLink]="['/']">Home</a>
-      </div>
-    </mat-step>
+          <div class="mini-summary" aria-label="Income summary">
+            <div><strong>Total income (demo):</strong> ${{ totalIncome }}</div>
+          </div>
 
-  </mat-stepper>
-</main>
+          <div class="actions">
+            <button mat-button class="btn-ghost" matStepperPrevious>Back</button>
+            <button mat-raised-button class="btn-primary" matStepperNext>Continue</button>
+          </div>
+        </div>
+      </mat-step>
+
+      <!-- STEP 3 -->
+      <mat-step [stepControl]="step3">
+        <ng-template matStepLabel>Deductions (learning)</ng-template>
+
+        <div class="card card--wide" aria-label="Deductions card">
+          <div class="card__head">
+            <h3 class="card__title">Deductions (learning)</h3>
+            <p class="card__sub">Optional inputs that can reduce taxable income (rules apply).</p>
+          </div>
+
+          <!-- ✅ formGroup wrapper -->
+          <div [formGroup]="step3" class="grid" aria-label="Deductions inputs">
+            <mat-form-field appearance="outline">
+              <mat-label>RRSP contributions (optional)</mat-label>
+              <input matInput type="number" min="0" formControlName="rrsp" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Tuition (optional)</mat-label>
+              <input matInput type="number" min="0" formControlName="tuition" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Moving expenses (optional)</mat-label>
+              <input matInput type="number" min="0" formControlName="movingExpenses" />
+            </mat-form-field>
+          </div>
+
+          <mat-card class="estimate card-glass" aria-label="Estimate box">
+            <mat-card-content>
+              <div aria-live="polite" class="estimate-lines">
+                <div><strong>Taxable income estimate:</strong> ${{ taxableIncomeEstimate }}</div>
+                <div><strong>Demo tax rate used:</strong> {{ (estimatedTaxRate * 100) | number:'1.0-0' }}%</div>
+                <div><strong>Estimated tax payable:</strong> ${{ estimatedTaxPayable }}</div>
+                <div><strong>Tax withheld:</strong> ${{ withheld }}</div>
+                <div class="result"><strong>{{ refundLabel }}</strong></div>
+              </div>
+
+              <p class="muted">
+                Learning estimate only. Real tax calculations use brackets, credits, and rules.
+              </p>
+            </mat-card-content>
+          </mat-card>
+
+          <div class="actions">
+            <button mat-button class="btn-ghost" matStepperPrevious>Back</button>
+            <button mat-raised-button class="btn-primary" matStepperNext>Continue</button>
+          </div>
+        </div>
+      </mat-step>
+
+      <!-- STEP 4 -->
+      <mat-step [stepControl]="step4">
+        <ng-template matStepLabel>Choose a filing method</ng-template>
+
+        <div class="card card--wide" aria-label="Filing method card">
+          <div class="card__head">
+            <h3 class="card__title">Choose a filing method</h3>
+            <p class="card__sub">Pick the simplest option for your situation.</p>
+          </div>
+
+          <!-- ✅ formGroup wrapper -->
+          <div [formGroup]="step4" class="grid" aria-label="Filing selections">
+            <mat-form-field appearance="outline">
+              <mat-label>Filing method</mat-label>
+              <mat-select formControlName="filingMethod">
+                <mat-option value="software">CRA-certified tax software (recommended)</mat-option>
+                <mat-option value="clinic">Free tax clinic (if eligible)</mat-option>
+                <mat-option value="accountant">Accountant / tax professional</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>CRA account</mat-label>
+              <mat-select formControlName="craAccount">
+                <mat-option value="no">I don’t have a CRA account yet</mat-option>
+                <mat-option value="yes">I already have a CRA account</mat-option>
+              </mat-select>
+              <mat-hint>A CRA account helps you check your results later.</mat-hint>
+            </mat-form-field>
+          </div>
+
+          <mat-card class="links card-glass" aria-label="Official links">
+            <mat-card-content>
+              <h2 class="h2">Official links (CRA)</h2>
+              <ul>
+                <li>
+                  <a href="https://www.canada.ca/en/services/taxes/income-tax/personal-income-tax.html" target="_blank" rel="noopener">
+                    Personal income tax — Canada.ca
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/netfile-overview.html" target="_blank" rel="noopener">
+                    NETFILE overview — CRA
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/community-volunteer-income-tax-program.html" target="_blank" rel="noopener">
+                    Free tax clinics (CVITP)
+                  </a>
+                </li>
+              </ul>
+            </mat-card-content>
+          </mat-card>
+
+          <div class="actions">
+            <button mat-button class="btn-ghost" matStepperPrevious>Back</button>
+            <button mat-raised-button class="btn-primary" matStepperNext>Continue</button>
+          </div>
+        </div>
+      </mat-step>
+
+      <!-- STEP 5 -->
+      <mat-step [stepControl]="step5">
+        <ng-template matStepLabel>Review & finish</ng-template>
+
+        <div class="card card--wide" aria-label="Finish card">
+          <div class="card__head">
+            <h3 class="card__title">Review & finish</h3>
+            <p class="card__sub">Final checks before you file.</p>
+          </div>
+
+          <!-- ✅ formGroup wrapper -->
+          <div [formGroup]="step5" class="checklist" role="group" aria-label="Final checklist">
+            <mat-checkbox formControlName="reviewedInfo">I reviewed my info (names, SIN, income values)</mat-checkbox>
+            <mat-checkbox formControlName="savedCopy">I will save a copy of my tax return</mat-checkbox>
+          </div>
+
+          <div class="actions">
+            <button mat-button class="btn-ghost" matStepperPrevious>Back</button>
+            <a mat-raised-button class="btn-primary" [routerLink]="['/taxes']">Finish</a>
+            <a mat-button class="btn-ghost" [routerLink]="['/']">Home</a>
+          </div>
+        </div>
+      </mat-step>
+
+    </mat-stepper>
+  </main>
+
+</div>

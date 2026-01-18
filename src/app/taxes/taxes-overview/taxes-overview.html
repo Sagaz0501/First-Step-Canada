@@ -1,80 +1,102 @@
 <main class="page" role="main" aria-label="Taxes overview">
-  <h1 class="title">{{ process.title }}</h1>
-  <p class="lead">{{ process.overview }}</p>
-
-  <!-- Key Points -->
-  <section class="panel" aria-label="Key points">
-    <h2>Key points</h2>
-    <ul>
-      <li *ngFor="let point of process.keyPoints">{{ point }}</li>
-    </ul>
-  </section>
-
-  <!-- Key Dates -->
-  <section class="panel" aria-label="Key dates">
-    <h2>Key dates</h2>
-    <div class="kv" role="list">
-      <div class="kv-row" role="listitem" *ngFor="let d of process.keyDates">
-        <span class="kv-label">{{ d.label }}:</span>
-        <span class="kv-value">{{ d.value }}</span>
-      </div>
+  <!-- Hero -->
+  <header class="hero" aria-label="Taxes overview header">
+    <div class="hero__top">
+      <h1 class="hero__title">{{ process.title }}</h1>
+      <p class="hero__lead">{{ process.overview }}</p>
     </div>
-  </section>
 
-  <!-- Step preview using Stepper -->
-  <section class="panel" aria-label="Step-by-step preview">
-    <h2>Step-by-step preview</h2>
+    <div class="hero__cta">
+      <a
+        mat-raised-button
+        class="btn-primary"
+        [routerLink]="['/taxes/steps']"
+        aria-label="Start the step-by-step taxes wizard"
+      >
+        Start step-by-step wizard
+      </a>
 
-    <mat-card>
-      <mat-card-content>
-        <!-- Preview stepper (read-only feel) -->
-        <mat-stepper [linear]="false">
-          <mat-step *ngFor="let s of process.steps; let i = index" [completed]="false">
-            <ng-template matStepLabel>
-              Step {{ i + 1 }} — {{ s.title }}
-            </ng-template>
-
-            <p class="step-desc">{{ s.description }}</p>
-
-            <!-- Only show "Next" for preview navigation -->
-            <div class="actions">
-              <button mat-button matStepperPrevious *ngIf="i > 0">Back</button>
-              <button mat-button matStepperNext *ngIf="i < process.steps.length - 1">Next</button>
-
-              <!-- CTA to go to real wizard page -->
-              <a
-                mat-raised-button
-                class="btn-primary"
-                [routerLink]="['/taxes/steps']"
-                aria-label="Start the full taxes step-by-step wizard"
-              >
-                Start full guide
-              </a>
-            </div>
-          </mat-step>
-        </mat-stepper>
-      </mat-card-content>
-    </mat-card>
-  </section>
-
-  <!-- Glossary -->
-  <section class="panel" aria-label="Glossary">
-    <h2>Glossary</h2>
-
-    <div class="kv" role="list">
-      <div class="kv-row" role="listitem" *ngFor="let g of process.glossary">
-        <span class="kv-label">{{ g.term }}:</span>
-        <span class="kv-value">{{ g.meaning }}</span>
-      </div>
+      <a mat-button class="btn-ghost" [routerLink]="['/']">
+        Back to Home
+      </a>
     </div>
-  </section>
+  </header>
 
-  <!-- Bottom CTA -->
-  <div class="actions">
-    <a mat-raised-button class="btn-primary" [routerLink]="['/taxes/steps']">
-      Start step-by-step wizard
-    </a>
-    <a mat-button [routerLink]="['/']">Back to Home</a>
+  <!-- Content grid -->
+  <div class="grid">
+    <!-- Left column -->
+    <section class="card" aria-label="Key points">
+      <div class="card__head">
+        <h2 class="card__title">Key points</h2>
+        <p class="card__sub">Quick summary for newcomers.</p>
+      </div>
+
+      <ul class="bullets">
+        <li *ngFor="let point of process.keyPoints">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="bullet-text">{{ point }}</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="card" aria-label="Key dates">
+      <div class="card__head">
+        <h2 class="card__title">Key dates</h2>
+        <p class="card__sub">Common deadlines and documents.</p>
+      </div>
+
+      <div class="date-notifications" role="list">
+        <div
+          class="date-note"
+          role="listitem"
+          *ngFor="let d of process.keyDates"
+        >
+          <div class="date-glow"></div>
+          <div class="date-border-glow"></div>
+
+          <div class="date-title">{{ d.label }}</div>
+          <div class="date-body">{{ d.value }}</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right column -->
+    <section class="card card--wide" aria-label="Step-by-step preview">
+      <div class="card__head">
+        <h2 class="card__title">Step-by-step preview</h2>
+        <p class="card__sub">What you’ll do in the wizard.</p>
+      </div>
+
+      <div class="steps" role="list">
+        <div class="step" role="listitem" *ngFor="let s of process.steps; let i = index">
+          <div class="step__badge" aria-hidden="true">{{ i + 1 }}</div>
+          <div class="step__body">
+            <div class="step__title">{{ s.title }}</div>
+            <div class="step__desc">{{ s.description }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card__footer">
+        <a mat-raised-button class="btn-primary" [routerLink]="['/taxes/steps']">
+          Start full guide
+        </a>
+        <span class="hint">~5–10 min learning</span>
+      </div>
+    </section>
+
+    <section class="card card--wide" aria-label="Glossary">
+      <div class="card__head">
+        <h2 class="card__title">Glossary</h2>
+        <p class="card__sub">Simple meanings for common terms.</p>
+      </div>
+
+      <div class="kv" role="list">
+        <div class="kv-row" role="listitem" *ngFor="let g of process.glossary">
+          <span class="kv-label">{{ g.term }}</span>
+          <span class="kv-value">{{ g.meaning }}</span>
+        </div>
+      </div>
+    </section>
   </div>
 </main>
-

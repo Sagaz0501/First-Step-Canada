@@ -3,11 +3,12 @@ import { RouterOutlet } from '@angular/router';
 import { Header } from './header/header';
 import { Footer } from './footer/footer';
 import { HomePage } from './home-page/home-page';
+import { HelpChat } from './shared/help-chat/help-chat';
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header, Footer, HomePage],
+  imports: [RouterOutlet, Header, Footer, HomePage, HelpChat],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

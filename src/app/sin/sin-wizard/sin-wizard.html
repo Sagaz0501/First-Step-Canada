@@ -1,0 +1,215 @@
+<!-- Simple glossary (keeps the wizard easy + improves accessibility) -->
+<section class="panel" aria-label="Glossary" *ngIf="process.glossary?.length">
+  <h2 class="h2">Quick glossary (simple explanations)</h2>
+  <p class="muted">
+    These terms appear when applying for a SIN. This is a simple explanation for newcomers.
+  </p>
+
+  <div class="glossary" role="list">
+    <div class="glossary-item" role="listitem" *ngFor="let g of process.glossary">
+      <div class="term">{{ g.term }}</div>
+      <div class="meaning">{{ g.meaning }}</div>
+    </div>
+  </div>
+</section>
+
+<main class="page" role="main" aria-label="SIN step-by-step wizard">
+  <div class="top">
+    <h1 class="title">SIN step-by-step</h1>
+    <p class="lead">
+      This guided wizard helps you understand how to get a Social Insurance Number (SIN) in Canada.
+      It is a learning guide (not an official application).
+    </p>
+  </div>
+
+  <mat-card class="notice" role="note" aria-label="Important note">
+    <mat-card-content>
+      <strong>Important:</strong> Always use Service Canada for SIN applications.
+      This guide helps you understand the steps and what to prepare.
+    </mat-card-content>
+  </mat-card>
+
+  <mat-stepper [linear]="true" class="stepper">
+
+    <!-- STEP 1 -->
+    <mat-step [stepControl]="step1">
+      <ng-template matStepLabel>Basics</ng-template>
+
+      <div [formGroup]="step1" class="checklist" role="group" aria-label="Basics checklist">
+        <mat-checkbox formControlName="understandsSin">
+          I understand a SIN is used for work and taxes
+        </mat-checkbox>
+
+        <mat-checkbox formControlName="willKeepPrivate">
+          I will keep my SIN private and only share it when required
+        </mat-checkbox>
+      </div>
+
+      <div class="actions">
+        <button mat-raised-button class="btn-primary" matStepperNext>Continue</button>
+        <a mat-button [routerLink]="['/sin']">Back to overview</a>
+      </div>
+    </mat-step>
+
+    <!-- STEP 2 -->
+    <mat-step [stepControl]="step2">
+      <ng-template matStepLabel>Eligibility</ng-template>
+
+      <div [formGroup]="step2" class="grid" aria-label="Eligibility form">
+        <mat-form-field appearance="outline">
+          <mat-label>Your status in Canada</mat-label>
+          <mat-select formControlName="statusType">
+            <mat-option value="citizen">Canadian citizen</mat-option>
+            <mat-option value="pr">Permanent resident</mat-option>
+            <mat-option value="temp">Temporary resident (permit holder)</mat-option>
+          </mat-select>
+          <mat-hint>Choose the option that matches your current status.</mat-hint>
+        </mat-form-field>
+
+        <div class="checklist" role="group" aria-label="Status confirmation">
+          <mat-checkbox formControlName="hasValidStatusDocs">
+            I have valid documents that prove my status
+          </mat-checkbox>
+        </div>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <div class="mini-summary" aria-label="Eligibility summary">
+        <div><strong>Selected status:</strong> {{ statusLabel }}</div>
+      </div>
+
+      <div class="actions">
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-raised-button class="btn-primary" matStepperNext>Continue</button>
+      </div>
+    </mat-step>
+
+    <!-- STEP 3 -->
+    <mat-step [stepControl]="step3">
+      <ng-template matStepLabel>Documents</ng-template>
+
+      <div [formGroup]="step3" class="checklist" role="group" aria-label="Documents checklist">
+        <mat-checkbox formControlName="hasOriginalDocs">
+          I will bring original documents (not photocopies)
+        </mat-checkbox>
+
+        <mat-checkbox formControlName="nameMatchesDocs">
+          My name and date of birth match across my documents
+        </mat-checkbox>
+      </div>
+
+      <mat-card class="notice" role="note" aria-label="Document note">
+        <mat-card-content>
+          <strong>Tip:</strong> Document requirements depend on your status.
+          Temporary residents often use a passport plus a study or work permit.
+        </mat-card-content>
+      </mat-card>
+
+      <div class="actions">
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-raised-button class="btn-primary" matStepperNext>Continue</button>
+      </div>
+    </mat-step>
+
+    <!-- STEP 4 -->
+    <mat-step [stepControl]="step4">
+      <ng-template matStepLabel>Apply</ng-template>
+
+      <div [formGroup]="step4" class="grid" aria-label="Application method form">
+        <mat-form-field appearance="outline">
+          <mat-label>How will you apply?</mat-label>
+          <mat-select formControlName="applicationMethod">
+            <mat-option value="online">Online (recommended)</mat-option>
+            <mat-option value="inPerson">In person (Service Canada office)</mat-option>
+            <mat-option value="mail">By mail (may take longer)</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Province (optional)</mat-label>
+          <mat-select formControlName="preferredProvince">
+            <mat-option value="ON">Ontario</mat-option>
+            <mat-option value="QC">Quebec</mat-option>
+            <mat-option value="BC">British Columbia</mat-option>
+            <mat-option value="AB">Alberta</mat-option>
+            <mat-option value="MB">Manitoba</mat-option>
+            <mat-option value="SK">Saskatchewan</mat-option>
+            <mat-option value="NS">Nova Scotia</mat-option>
+            <mat-option value="NB">New Brunswick</mat-option>
+            <mat-option value="NL">Newfoundland and Labrador</mat-option>
+            <mat-option value="PE">Prince Edward Island</mat-option>
+            <mat-option value="NT">Northwest Territories</mat-option>
+            <mat-option value="NU">Nunavut</mat-option>
+            <mat-option value="YT">Yukon</mat-option>
+          </mat-select>
+          <mat-hint>This does not affect eligibility. It’s just for your reference.</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <mat-card class="links" aria-label="Official links">
+        <mat-card-content>
+          <h2 class="h2">Official links (Service Canada)</h2>
+          <ul>
+            <li>
+              <a
+                href="https://www.canada.ca/en/employment-social-development/services/sin.html"
+                target="_blank"
+                rel="noopener"
+              >
+                Social Insurance Number (SIN) — Canada.ca
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.canada.ca/en/employment-social-development/corporate/contact/sin.html"
+                target="_blank"
+                rel="noopener"
+              >
+                Find a Service Canada office (SIN) — Canada.ca
+              </a>
+            </li>
+          </ul>
+        </mat-card-content>
+      </mat-card>
+
+      <div class="mini-summary" aria-label="Application summary">
+        <div><strong>Chosen method:</strong> {{ methodLabel }}</div>
+      </div>
+
+      <div class="actions">
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-raised-button class="btn-primary" matStepperNext>Continue</button>
+      </div>
+    </mat-step>
+
+    <!-- STEP 5 -->
+    <mat-step [stepControl]="step5">
+      <ng-template matStepLabel>Review & finish</ng-template>
+
+      <div [formGroup]="step5" class="checklist" role="group" aria-label="Final checklist">
+        <mat-checkbox formControlName="reviewedSteps">
+          I reviewed the steps and know what to bring
+        </mat-checkbox>
+
+        <mat-checkbox formControlName="knowsWhoToShareWith">
+          I know when it is okay to share my SIN (employer/payroll, CRA, some banks)
+        </mat-checkbox>
+      </div>
+
+      <mat-card class="notice" role="note" aria-label="Safety reminder">
+        <mat-card-content>
+          <strong>Reminder:</strong> Never send your SIN through insecure messages.
+          If someone asks for your SIN and you are not sure why, ask for a written reason first.
+        </mat-card-content>
+      </mat-card>
+
+      <div class="actions">
+        <button mat-button matStepperPrevious>Back</button>
+        <a mat-raised-button class="btn-primary" [routerLink]="['/sin']">Finish</a>
+        <a mat-button [routerLink]="['/']">Home</a>
+      </div>
+    </mat-step>
+
+  </mat-stepper>
+</main>

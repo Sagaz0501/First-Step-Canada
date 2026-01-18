@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Sin } from './sin';
+import { SinOverview } from './sin-overview';
 
-describe('Sin', () => {
-  let component: Sin;
-  let fixture: ComponentFixture<Sin>;
+describe('SinOverview', () => {
+  let component: SinOverview;
+  let fixture: ComponentFixture<SinOverview>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Sin]
+      imports: [SinOverview]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Sin);
+    fixture = TestBed.createComponent(SinOverview);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

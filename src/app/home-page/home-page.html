@@ -3,7 +3,6 @@
   <!-- HERO with photo -->
   <section class="hero" aria-label="Intro">
     <div class="hero-bg" aria-hidden="true"></div>
-<<<<<<< HEAD
 
     <div class="hero-inner">
       <div class="hero-shell">
@@ -38,86 +37,6 @@
       <span class="scroll-dot" aria-hidden="true"></span>
       <span class="scroll-text">Explore</span>
     </a>
-  </section>
-
-  <!-- TOPICS (your cards) -->
-  <section class="topics" id="topics" aria-label="Topics">
-    <div class="topics-head">
-      <div>
-        <h3 class="section-title">Browse topics</h3>
-        <p class="section-lead">
-          Choose a guide below to get a clear, step-by-step path.
-        </p>
-      </div>
-    </div>
-
-    <div class="cards">
-      <mat-card
-        class="topic-card fancy-card"
-        *ngFor="let p of processData.processes"
-        tabindex="0"
-        role="link"
-        [routerLink]="['/', p.id]"
-        aria-label="Open {{ p.title }}"
-      >
-        <div class="main-content">
-          <div class="header">
-            <span>Guide</span>
-            <span>{{ p.id | uppercase }}</span>
-          </div>
-
-          <h3 class="heading">{{ p.title }}</h3>
-
-          <p class="desc">{{ p.shortDescription }}</p>
-
-          <div class="categories">
-            <span *ngFor="let tag of getTags(p.id)">{{ tag }}</span>
-          </div>
-        </div>
-
-        <div class="footer">
-          <span class="more-pill" aria-hidden="true">
-            More info <span class="arrow">→</span>
-          </span>
-        </div>
-      </mat-card>
-    </div>
-=======
-
-    <div class="hero-inner">
-      <div class="hero-shell">
-        <div class="hero-left">
-          <p class="hero-eyebrow">For newcomers in Canada</p>
-
-          <h2 class="hero-title">Start your first steps in Canada</h2>
-
-          <p class="hero-subtitle">
-            Clear, step-by-step guides and checklists that help you move forward with confidence.
-          </p>
-
-          <div class="hero-actions" role="group" aria-label="Primary actions">
-            <div class="cta">
-              <a class="btn-wrap" routerLink="/planner">
-                <span class="btn btn-primary">Start my journey <span class="btn-arrow">→</span></span>
-              </a>
-            </div>
-
-            <div class="cta">
-              <a class="btn btn-secondary" href="#topics" aria-label="Browse guides">
-                Browse guides <span class="btn-arrow" aria-hidden="true">→</span>
-              </a>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <a class="scroll-hint" href="#story" aria-label="Scroll to next section">
-      <span class="scroll-dot" aria-hidden="true"></span>
-      <span class="scroll-text">Explore</span>
-    </a>
->>>>>>> a18e83d (First release: Version 1 Working)
   </section>
 
   <!-- TOPICS (your cards) -->

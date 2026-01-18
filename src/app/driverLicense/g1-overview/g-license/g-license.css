@@ -1,5 +1,5 @@
 /* =========================
-   G1 overview — match Taxes overview (slate/blue)
+   G1 overview — clean & aligned
 ========================= */
 
 .page {
@@ -9,7 +9,10 @@
   color: #0f172a;
 }
 
-/* Hero */
+/* =========================
+   HERO
+========================= */
+
 .hero {
   border: 1px solid rgba(15, 23, 42, 0.10);
   border-radius: 18px;
@@ -41,19 +44,32 @@
   align-items: center;
 }
 
-/* Grid */
+/* =========================
+   MAIN GRID
+========================= */
+
 .grid {
   margin-top: 14px;
   display: grid;
-  gap: 14px;
   grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  align-items: start;
+}
+
+.left-col {
+  display: grid;
+  gap: 14px;
+  align-content: start;
 }
 
 .card--wide {
   grid-column: 1 / -1;
 }
 
-/* Cards */
+/* =========================
+   CARDS
+========================= */
+
 .card,
 .links {
   border: 1px solid rgba(15, 23, 42, 0.10);
@@ -61,6 +77,10 @@
   padding: 16px;
   background: #ffffff;
 }
+
+/* =========================
+   CARD HEAD
+========================= */
 
 .card__head {
   margin-bottom: 12px;
@@ -79,7 +99,10 @@
   font-size: 13px;
 }
 
-/* Bullets */
+/* =========================
+   BULLETS
+========================= */
+
 .bullets {
   list-style: none;
   padding: 0;
@@ -108,7 +131,10 @@
   line-height: 1.45;
 }
 
-/* KV */
+/* =========================
+   KEY VALUE / GLOSSARY
+========================= */
+
 .kv {
   display: grid;
   gap: 10px;
@@ -133,7 +159,10 @@
   color: #334155;
 }
 
-/* Steps preview */
+/* =========================
+   STEPS
+========================= */
+
 .steps {
   display: grid;
   gap: 10px;
@@ -171,7 +200,10 @@
   line-height: 1.5;
 }
 
-/* Footer */
+/* =========================
+   FOOTER
+========================= */
+
 .card__footer {
   margin-top: 12px;
   display: flex;
@@ -186,7 +218,10 @@
   font-size: 13px;
 }
 
-/* Buttons */
+/* =========================
+   BUTTONS
+========================= */
+
 .btn-primary {
   border-radius: 12px !important;
   font-weight: 900 !important;
@@ -201,17 +236,33 @@ a.btn-primary[mat-raised-button] {
   border-radius: 12px !important;
 }
 
-/* Links */
+/* =========================
+   LINKS
+========================= */
+
+.links ul {
+  margin: 8px 0 0;
+  padding-left: 18px;
+}
+
+.links li {
+  margin: 8px 0;
+}
+
 .links a {
   color: #2563eb;
   font-weight: 700;
   text-decoration: none;
 }
+
 .links a:hover {
   text-decoration: underline;
 }
 
-/* Notification cards (for key facts) */
+/* =========================
+   KEY FACTS CARDS
+========================= */
+
 .date-notifications {
   display: grid;
   gap: 12px;
@@ -235,9 +286,12 @@ a.btn-primary[mat-raised-button] {
   inset: 10px auto 10px 8px;
   width: 4px;
   border-radius: 4px;
-  background: linear-gradient(to bottom, #2563eb, #60a5fa, #a5b4fc);
-  transition: transform 250ms ease;
-  z-index: 3;
+  background: linear-gradient(
+    to bottom,
+    #2563eb,
+    #60a5fa,
+    #a5b4fc
+  );
 }
 
 .date-note:hover {
@@ -245,59 +299,31 @@ a.btn-primary[mat-raised-button] {
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.10);
 }
 
-.date-note:hover::after {
-  transform: translateX(1px);
-}
-
-.date-glow,
-.date-border-glow {
-  position: absolute;
-  width: 18rem;
-  height: 18rem;
-  left: 0;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle closest-side, rgba(37, 99, 235, 0.35), transparent);
-  opacity: 0;
-  transition: opacity 250ms ease;
-  pointer-events: none;
-}
-
-.date-glow { z-index: 2; }
-.date-border-glow { z-index: 0; }
-
-.date-note:hover .date-glow { opacity: 0.12; }
-.date-note:hover .date-border-glow { opacity: 0.08; }
-
 .date-title {
-  position: relative;
-  z-index: 4;
   font-weight: 900;
-  letter-spacing: -0.01em;
-  color: #0f172a;
   margin-bottom: 4px;
-  transition: transform 200ms ease;
 }
 
 .date-body {
-  position: relative;
-  z-index: 4;
   color: #475569;
   font-size: 14px;
   line-height: 1.5;
-  transition: transform 200ms ease;
 }
 
-.date-note:hover .date-title { transform: translateX(2px); }
-.date-note:hover .date-body { transform: translateX(4px); }
+/* =========================
+   RESPONSIVE
+========================= */
 
-/* Responsive */
 @media (max-width: 900px) {
-  .grid { grid-template-columns: 1fr; }
-  .card--wide { grid-column: auto; }
-  .kv-row { grid-template-columns: 1fr; }
-}
+  .grid {
+    grid-template-columns: 1fr;
+  }
 
-@media (max-width: 640px) {
-  .date-note { padding: 12px 14px 12px 20px; }
+  .card--wide {
+    grid-column: auto;
+  }
+
+  .kv-row {
+    grid-template-columns: 1fr;
+  }
 }

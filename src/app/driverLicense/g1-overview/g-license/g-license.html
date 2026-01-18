@@ -1,4 +1,5 @@
 <main class="page" role="main" aria-label="G1 overview">
+
   <!-- Hero -->
   <header class="hero" aria-label="G1 overview header">
     <div class="hero__top">
@@ -22,49 +23,47 @@
     </div>
   </header>
 
-  <!-- Content grid -->
+  <!-- GRID -->
   <div class="grid">
-    <!-- Key points -->
-    <section class="card" aria-label="Key points" *ngIf="process.keyPoints?.length">
-      <div class="card__head">
-        <h2 class="card__title">Key points</h2>
-        <p class="card__sub">Quick summary for newcomers in Ontario.</p>
-      </div>
 
-      <ul class="bullets">
-        <li *ngFor="let point of process.keyPoints">
-          <span class="dot" aria-hidden="true"></span>
-          <span class="bullet-text">{{ point }}</span>
-        </li>
-      </ul>
-    </section>
+    <!-- LEFT COLUMN -->
+    <div class="left-col">
 
-    <!-- Key facts (costs & timelines) -->
-    <section class="card" aria-label="Key facts (costs and timelines)" *ngIf="process.keyDates?.length">
-      <div class="card__head">
-        <h2 class="card__title">Key facts (costs & timelines)</h2>
-        <p class="card__sub">High-level overview (always confirm official sources).</p>
-      </div>
-
-      <div class="date-notifications" role="list">
-        <div class="date-note" role="listitem" *ngFor="let d of process.keyDates">
-          <div class="date-glow"></div>
-          <div class="date-border-glow"></div>
-
-          <div class="date-title">{{ d.label }}</div>
-          <div class="date-body">{{ d.value }}</div>
+      <!-- Key points -->
+      <section
+        class="card"
+        aria-label="Key points"
+        *ngIf="process.keyPoints?.length"
+      >
+        <div class="card__head">
+          <h2 class="card__title">Key points</h2>
+          <p class="card__sub">Quick summary for newcomers in Ontario.</p>
         </div>
-      </div>
 
+        <ul class="bullets">
+          <li *ngFor="let point of process.keyPoints">
+            <span class="dot" aria-hidden="true"></span>
+            <span class="bullet-text">{{ point }}</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Official links -->
       <mat-card class="links" aria-label="Official links">
         <mat-card-content>
-          <h2 class="h2">Official links</h2>
+          <h2 class="card__title">Official links</h2>
+
           <ul>
             <li>
-              <a href="https://drivetest.ca/tests/fees/" target="_blank" rel="noopener">
+              <a
+                href="https://drivetest.ca/tests/fees/"
+                target="_blank"
+                rel="noopener"
+              >
                 DriveTest — Fees (Ontario)
               </a>
             </li>
+
             <li>
               <a
                 href="https://www.ontario.ca/page/get-g-drivers-licence-new-drivers"
@@ -74,26 +73,71 @@
                 Ontario.ca — Get a G driver’s licence (new drivers)
               </a>
             </li>
+
             <li>
-              <a href="https://drivetest.ca/find-a-drivetest-centre/" target="_blank" rel="noopener">
+              <a
+                href="https://drivetest.ca/find-a-drivetest-centre/"
+                target="_blank"
+                rel="noopener"
+              >
                 DriveTest — Find a test centre
               </a>
             </li>
           </ul>
         </mat-card-content>
       </mat-card>
+
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <section
+      class="card"
+      aria-label="Key facts (costs and timelines)"
+      *ngIf="process.keyDates?.length"
+    >
+      <div class="card__head">
+        <h2 class="card__title">Key facts (costs & timelines)</h2>
+        <p class="card__sub">
+          High-level overview (always confirm official sources).
+        </p>
+      </div>
+
+      <div class="date-notifications" role="list">
+        <div
+          class="date-note"
+          role="listitem"
+          *ngFor="let d of process.keyDates"
+        >
+          <div class="date-glow"></div>
+          <div class="date-border-glow"></div>
+
+          <div class="date-title">{{ d.label }}</div>
+          <div class="date-body">{{ d.value }}</div>
+        </div>
+      </div>
     </section>
 
-    <!-- Step-by-step preview (like Taxes) -->
-    <section class="card card--wide" aria-label="Step-by-step preview" *ngIf="process.steps?.length">
+    <!-- FULL WIDTH -->
+    <section
+      class="card card--wide"
+      aria-label="Step-by-step preview"
+      *ngIf="process.steps?.length"
+    >
       <div class="card__head">
         <h2 class="card__title">Step-by-step preview</h2>
         <p class="card__sub">What you’ll do in the wizard.</p>
       </div>
 
       <div class="steps" role="list">
-        <div class="step" role="listitem" *ngFor="let s of process.steps; let i = index">
-          <div class="step__badge" aria-hidden="true">{{ i + 1 }}</div>
+        <div
+          class="step"
+          role="listitem"
+          *ngFor="let s of process.steps; let i = index"
+        >
+          <div class="step__badge" aria-hidden="true">
+            {{ i + 1 }}
+          </div>
+
           <div class="step__body">
             <div class="step__title">{{ s.title }}</div>
             <div class="step__desc">{{ s.description }}</div>
@@ -110,7 +154,11 @@
     </section>
 
     <!-- Glossary -->
-    <section class="card card--wide" aria-label="Glossary" *ngIf="process.glossary?.length">
+    <section
+      class="card card--wide"
+      aria-label="Glossary"
+      *ngIf="process.glossary?.length"
+    >
       <div class="card__head">
         <h2 class="card__title">Glossary</h2>
         <p class="card__sub">Simple meanings for common terms.</p>
@@ -123,5 +171,6 @@
         </div>
       </div>
     </section>
+
   </div>
 </main>

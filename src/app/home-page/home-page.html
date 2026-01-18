@@ -8,29 +8,35 @@
   </section>
 
   <section class="cards" aria-label="Topics">
-    <mat-card class="topic-card" *ngFor="let p of processData.processes">
-      <mat-card-header>
-        <mat-card-title>{{ p.title }}</mat-card-title>
-      </mat-card-header>
+    <mat-card
+      class="topic-card fancy-card"
+      *ngFor="let p of processData.processes"
+      tabindex="0"
+      role="link"
+      [routerLink]="['/', p.id]"
+      aria-label="Open {{ p.title }}"
+    >
+      <div class="main-content">
+        <div class="header">
+          <span>Guide</span>
+          <span>{{ p.id | uppercase }}</span>
+        </div>
 
-      <mat-card-content>
+        <h3 class="heading">{{ p.title }}</h3>
+
         <p class="desc">{{ p.shortDescription }}</p>
-      </mat-card-content>
 
-      <mat-card-actions align="end">
-        <!-- For now this is a mock route style.
-             Later you can route to /sin, /g1, /taxes based on p.id -->
-        <button
-          mat-raised-button
-          class="btn-primary"
-          [routerLink]="['/', p.id]"
-          aria-label="Open {{ p.title }} steps"
-        >
-          More Info
-        </button>
-      </mat-card-actions>
+        <div class="categories">
+          <span *ngFor="let tag of getTags(p.id)">{{ tag }}</span>
+        </div>
+      </div>
+
+      <div class="footer">
+        <span class="more-pill" aria-hidden="true">
+          More info <span class="arrow">→</span>
+        </span>
+      </div>
     </mat-card>
   </section>
 
 </main>
-

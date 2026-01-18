@@ -111,7 +111,7 @@ export class ProcessDataService {
     // G1 DRIVER LICENSE PROCESS
     // ===============================
     {
-      id: 'g1',
+      id: 'g-license',
       title: 'G1 Driver’s License (Ontario)',
       shortDescription:
         'The G1 is the first step to getting a driver’s license in Ontario.',

@@ -2,7 +2,7 @@
   display: block;
   box-sizing: border-box;
 
-  /* same tokens as header */
+  /* base tokens (light page) */
   --bg-main: #ffffff;
   --bg-accent: #f1f5f9;
 
@@ -52,57 +52,179 @@
 .cards {
   margin-top: 18px;
   display: grid;
-  grid-template-columns: repeat(3, minmax(220px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
 }
 
-/* Card */
-.topic-card {
-  border: 1px solid var(--border);
+/* ===== Fancy card variant ===== */
+/* Apply both classes on the same element: class="topic-card fancy-card" */
+.topic-card.fancy-card {
+  min-height: 360px;
+  padding: 20px;
+  color: var(--text-main);
+
+  /* white surface + neon gradient border */
+  background:
+  linear-gradient(#ffffff, #ffffff) padding-box,
+  linear-gradient(
+    145deg,
+    transparent 30%,
+    #93c5fd,
+    #2563eb
+  ) border-box;
+
+
+  border: 3.5px solid transparent;
   border-radius: 14px;
-  background: var(--bg-main);
-  overflow: hidden; /* чтобы верхняя линия выглядела аккуратно */
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  display: flex;
+  flex-direction: column;
+
+  cursor: pointer;
+  overflow: hidden;
+
+  will-change: transform;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
 }
 
-/* Accent line on top */
-.topic-card::before {
-  content: "";
-  display: block;
-  height: 4px;
-  background: linear-gradient(90deg, #93c5fd, var(--accent));
-}
-
-/* Optional hover (очень мягко) */
-.topic-card:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
-}
-
-.desc {
-  margin: 10px 0 0 0;
-  color: var(--text-muted);
-  line-height: 1.45;
-}
-
-/* Button */
-.btn-primary {
-  background: var(--accent) !important;
-  color: #ffffff !important;
-  border-radius: 10px !important;
+/* Hover (no rotation) */
+.topic-card.fancy-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 18px 44px rgba(15, 23, 42, 0.14);
 }
 
 /* Focus for keyboard */
-button:focus-visible,
-a:focus-visible {
+.topic-card.fancy-card:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 4px var(--focus-ring);
-  border-radius: 10px;
+  box-shadow: 0 0 0 4px var(--focus-ring), 0 18px 44px rgba(15, 23, 42, 0.14);
+}
+
+/* ===== Content ===== */
+.topic-card.fancy-card .main-content {
+  flex: 1;
+}
+
+.topic-card.fancy-card .header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.topic-card.fancy-card .header span:first-child {
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.topic-card.fancy-card .header span:last-child {
+  color: #64748b;
+}
+
+.topic-card.fancy-card .heading {
+  font-size: 22px;
+  margin: 20px 0 12px;
+  font-weight: 700;
+}
+
+.topic-card.fancy-card .desc {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ===== Tags ===== */
+.topic-card.fancy-card .categories {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.topic-card.fancy-card .categories span {
+  background: var(--accent-soft);
+  color: var(--accent);
+
+  padding: 4px 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+
+  border-radius: 999px;
+}
+
+/* ===== Footer ===== */
+.topic-card.fancy-card .footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+/* Fancy "More info" pill (visual only) */
+.more-pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 14px;
+  border-radius: 999px;
+
+  color: var(--text-main);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.2px;
+
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+
+  background: rgba(15, 23, 42, 0.04);
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+
+  pointer-events: none; /* card itself is the link */
+}
+
+.more-pill::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  border-radius: inherit;
+
+  background: linear-gradient(145deg, #e81cff, #40c9ff);
+
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.more-pill .arrow {
+  display: inline-block;
+  transform: translateX(0);
+  transition: transform 0.2s ease;
+  opacity: 0.7;
+}
+
+.topic-card.fancy-card:hover .more-pill {
+  transform: translateY(-1px);
+  background: rgba(15, 23, 42, 0.06);
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.18);
+}
+
+.topic-card.fancy-card:hover .more-pill .arrow {
+  transform: translateX(3px);
 }
 
 /* Responsive */
 @media (max-width: 900px) {
   .cards {
     grid-template-columns: 1fr;
+  }
+
+  .topic-card.fancy-card:hover {
+    transform: translateY(-4px);
   }
 }

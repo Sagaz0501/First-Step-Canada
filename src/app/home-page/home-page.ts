@@ -13,6 +13,20 @@ import { ProcessDataService } from '../services/process-data.service';
   templateUrl: './home-page.html',
   styleUrl: './home-page.css',
 })
+
 export class HomePage {
- constructor(public processData: ProcessDataService) {}
+  constructor(public processData: ProcessDataService) {}
+
+  getTags(id: string): string[] {
+    switch (id) {
+      case 'sin':
+        return ['documents', 'work'];
+      case 'taxes':
+        return ['tax', 'cra'];
+      case 'g-license':
+        return ['driving', 'ontario'];
+      default:
+        return [];
+    }
+  }
 }
